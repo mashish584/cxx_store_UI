@@ -1,0 +1,58 @@
+<form action="" class="panel-form">
+    <div class="form-group">
+        <label for="product-name">Product Name</label>
+        <input type="text" name="product_name" id="product-name">
+    </div>
+    <div class="input-group">
+        <div class="input-container">
+                <label for="price">Price</label>
+                <input type="text" name="product_price" id="product-price">
+        </div>
+        <div class="input-container">
+                <label for="product-qty">Quantity</label>
+                <input type="text" name="product_qty" id="product-qty">
+        </div>
+    </div>
+    <div class="select-group full">
+       <div class="select-container full">
+            <label for="">Category</label>
+            <select name="">
+                <option value="" selected>Electronics</option>
+            </select>
+       </div>
+       <div class="select-container full">
+           <label for="">Sub Category</label>
+           <select name="">
+                <option value="" selected>Computers</option>
+            </select>
+       </div>
+    </div>
+    <div class="form-group">
+        <div class="form-group--header">
+            <label for="">Features</label>
+            <button class="btn btn-admin">ADD</button>
+        </div>
+        <div class="list-group">
+            <div class="input-container">
+                <input type="text" name="type" placeholder="Type">
+                <input type="text" name="type" placeholder="Type">
+                <input type="text" name="type" placeholder="Type">
+            </div>
+            <div class="input-container">
+                <input type="text" name="feature" placeholder="Feature">
+                <input type="text" name="feature" placeholder="Feature">
+                <input type="text" name="feature" placeholder="Feature">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Upload Image</label>
+        <label for="upload" class="btn btn-file"><i class="fa fa-camera"></i>Upload Image</label>
+        <input type="file" name="upload" id="upload" accept="image/*" >
+    </div>
+    <div class="form-group">
+        <label for="description">Product Featured Description</label>
+        <textarea name="description" id="description" maxlength="350"></textarea>
+    </div>
+    <button class="btn btn-submit">ADD PRODUCT</button>
+</form>

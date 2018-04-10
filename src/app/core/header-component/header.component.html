@@ -1,0 +1,32 @@
+<!-- Start: Site Header -->
+<div class="site-header">
+    <div class="site-nav--primary">
+        <a [routerLink]="['']" class="site-logo">CXX</a>
+        <div class="search-form">
+            <span class="fa fa-search"></span>
+            <input type="search" name="search" placeholder="Search for mobiles,laptops......"/>
+        </div>
+        <a [routerLink]="['admin']" class="admin-btn btn btn-in">Admin</a>
+        <a [routerLink]="['signup']" class="login-btn btn btn-gr">Sign Up</a>
+        <a [routerLink]="['signin']" class="login-btn btn btn-gr">Sign In</a>
+        <a href="" class="cart-btn btn"><span class="fa fa-shopping-cart"><i class="cart-badge">2</i></span></a>
+    </div>
+    <div class="site-nav--secondary">
+        <ul class="nav-list">
+            <li class="nav-list--item">Electronics
+                    <i class="fa fa-angle-down"></i>
+                    <div class="nav-list--dropdown">
+                        <a href="">Item1</a>
+                        <a href="">Item2</a>
+                        <a href="">Item3</a>
+                    </div>
+            </li>
+            <li class="nav-list--item">Clothings
+                <i class="fa fa-angle-down"></i>
+            </li>
+            <li class="nav-list--item">Footwears
+                <i class="fa fa-angle-down"></i>
+            </li>
+        </ul>
+    </div>
+</div> <!-- End: Site Header -->
