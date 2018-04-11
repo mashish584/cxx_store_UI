@@ -1,58 +1,54 @@
-<form action="" class="panel-form">
+<form [formGroup]="productForm" (ngSubmit)="addProduct()" class="panel-form">
     <div class="form-group">
         <label for="product-name">Product Name</label>
-        <input type="text" name="product_name" id="product-name">
+        <input type="text" formControlName="product_name" id="product-name">
     </div>
     <div class="input-group">
         <div class="input-container">
                 <label for="price">Price</label>
-                <input type="text" name="product_price" id="product-price">
+                <input type="text" formControlName="product_price" id="product-price">
         </div>
         <div class="input-container">
                 <label for="product-qty">Quantity</label>
-                <input type="text" name="product_qty" id="product-qty">
+                <input type="text" formControlName="product_qty" id="product-qty">
         </div>
     </div>
     <div class="select-group full">
        <div class="select-container full">
             <label for="">Category</label>
-            <select name="">
-                <option value="" selected>Electronics</option>
+            <select formControlName="product_p_cat">
+                <option value="Electronics" selected>Electronics</option>
             </select>
        </div>
        <div class="select-container full">
            <label for="">Sub Category</label>
-           <select name="">
-                <option value="" selected>Computers</option>
+           <select formControlName="product_c_cat">
+                <option value="Computers" selected>Computers</option>
             </select>
        </div>
     </div>
     <div class="form-group">
         <div class="form-group--header">
             <label for="">Features</label>
-            <button class="btn btn-admin">ADD</button>
+            <button type="button" (click)="addFeatures()" class="btn btn-admin">ADD</button>
         </div>
         <div class="list-group">
-            <div class="input-container">
-                <input type="text" name="type" placeholder="Type">
-                <input type="text" name="type" placeholder="Type">
-                <input type="text" name="type" placeholder="Type">
+            <div formArrayName="product_f_types" class="input-container">
+                <input type="text" *ngFor="let types of productForm.get('product_f_types').controls;let i=index;" [formControlName]="i" placeholder="Type">
             </div>
-            <div class="input-container">
-                <input type="text" name="feature" placeholder="Feature">
-                <input type="text" name="feature" placeholder="Feature">
-                <input type="text" name="feature" placeholder="Feature">
+            <div formArrayName="product_f_values" class="input-container">
+                <input type="text" *ngFor="let values of productForm.get('product_f_values').controls;let i=index;" [formControlName]="i" placeholder="Feature">
             </div>
         </div>
     </div>
     <div class="form-group">
         <label for="">Upload Image</label>
         <label for="upload" class="btn btn-file"><i class="fa fa-camera"></i>Upload Image</label>
-        <input type="file" name="upload" id="upload" accept="image/*" >
+        <input type="file" name="upload" id="upload" #upload accept="image/*" >
     </div>
     <div class="form-group">
         <label for="description">Product Featured Description</label>
-        <textarea name="description" id="description" maxlength="350"></textarea>
+        <textarea formControlName="product_desc" id="description" maxlength="350"></textarea>
     </div>
-    <button class="btn btn-submit">ADD PRODUCT</button>
+    <button [disabled]="productForm.invalid" class="btn btn-submit">ADD PRODUCT</button>
 </form>
