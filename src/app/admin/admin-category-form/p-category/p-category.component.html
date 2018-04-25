@@ -1,26 +1,9 @@
 <div class="parent-category">
-    <form action="" class="panel-form">
-        <input type="text" name="parent_cat" placeholder="Parent Category">
-        <button class="btn btn-submit">ADD CATEGORY</button>
-    </form>
+    <div class="panel-form">
+        <input type="text" [(ngModel)] = "name" placeholder="Parent Category">
+        <button [disabled] = "!name || !type" (click) = "addCategory()" class="btn btn-submit">ADD CATEGORY</button>
+    </div>
     <ul class="category-list">
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
+       <li *ngFor="let category of categories;let i=index;">{{category?.name}}</li>
     </ul>
 </div>

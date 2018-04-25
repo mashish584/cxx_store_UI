@@ -1,0 +1,22 @@
+<div class="panel-actions">
+    <a [routerLink]="['/admin']" class="btn btn-admin"><i class="fa fa-angle-left"></i></a>
+    <a [routerLink]="['/admin/product/add']" class="btn btn-admin"><i class="fa fa-plus"></i>Add New Product</a>
+</div>
+<div class="panel-products">
+    <div class="panel-products--fields">
+        <span>Product</span>
+        <span>Price</span>
+        <span>Quantity</span>
+        <span>Category</span>
+        <span>Sub-Category</span>
+    </div>
+    <div class="panel-products--list">
+        <li *ngFor="let product of products" (click)="updateProduct(product._id)">
+            <span>{{product?.productTitle}}</span>
+            <span>${{product?.productPrice}}</span>
+            <span>{{product?.productQty}}</span>
+            <span>{{product?.productP_cat}}</span>
+            <span>{{product?.productC_cat}}</span>
+        </li>
+    </div>
+</div>

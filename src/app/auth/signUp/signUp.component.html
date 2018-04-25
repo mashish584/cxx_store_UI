@@ -1,24 +1,26 @@
 <!-- Start: Site Content Container -->
 <div class="site-content">
-    <form class="user-form">
-        <div class="flash err">Email already exist.<span class="fa fa-close"></span></div>
+    <form [formGroup]="signupForm" (ngSubmit) = "registerUser()"  class="user-form">
+        <div *ngIf="error && !success"  class="flash err">{{error}}<span close-flash class="fa fa-close"></span></div>
+        <div *ngIf="success && !error"  class="flash success">{{success}}<span close-flash class="fa fa-close"></span></div>
         <div class="user-form--group">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="user-input">
+            <input type="text" formControlName="username" id="username" class="user-input">
         </div>
         <div class="user-form--group">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="user-input">
+            <input type="email" formControlName="email" id="email" class="user-input">
         </div>
         <div class="user-form--group">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="user-input">
+            <input type="password" formControlName="password" id="password" class="user-input">
         </div>
         <div class="user-form--group">
             <label for="confirm">Confirm Password</label>
-            <input type="password" name="confirm" id="confirm" class="user-input">
+            <input type="password" (keyup)="matchPassword($event)" formControlName="confirm" id="confirm" class="user-input">
+            <span *ngIf="confirmError">Password not matched.</span>
         </div>
-        <button type="submit" class="btn btn-gr">Sign Up</button>
+        <button [disabled]="signupForm.invalid" type="submit" class="btn btn-gr">Sign Up</button>
     </form>
 </div>
 <!-- End: Site Content Container -->

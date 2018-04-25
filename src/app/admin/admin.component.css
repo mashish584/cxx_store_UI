@@ -21,12 +21,12 @@ textarea {
 input[type="file"] {
   display: none; }
 
-.admin-info, .panel-header, .panel-tabs, .panel-tabs .item-container, .panel-form .input-group,
-.panel-form .select-group, .panel-form .form-group, .panel-form .form-group--header, .panel-form .form-group .list-group, .parent-category,
-.child-category, .parent-category .category-list li,
-.child-category .category-list li {
-  display: flex;
-  flex-wrap: wrap; }
+  .admin-info, .panel-header, .panel-actions, .panel-tabs, .panel-tabs .item-container, .panel-form .input-group,
+  .panel-form .select-group, .panel-form .form-group, .panel-form .form-group--header, .panel-form .form-group .list-group, .parent-category,
+  .child-category, .parent-category .category-list li,
+  .child-category .category-list li, .panel-products--fields, .panel-products--list li, .panel-users--fields, .panel-users--list li {
+    display: flex;
+    flex-wrap: wrap; }
 
 .panel-tabs .item-container span:last-child {
   display: inline-block;
@@ -72,6 +72,14 @@ input[type="file"] {
   padding: 0.9375em; }
   .panel-header a:last-child {
     margin-left: auto; }
+    .panel-actions {
+      padding: 2.1875em 0;
+      justify-content: space-between; }
+      .panel-actions a:first-child>i{
+        margin-right: 0;
+      }
+      .panel-actions span{
+        margin-left: 0.625em; }
 
     .btn {
       padding: 0.625em 0.9375em;
@@ -221,3 +229,81 @@ input[type="file"] {
       .parent-category .category-list li span,
       .child-category .category-list li span {
         margin-left: auto; }
+        .panel-products {
+          margin-top: 3.4375em;
+          font-family: 'Comfortaa', cursive;
+          border: 1px solid #e1e1e1;
+          padding: 0 0 1.5625em 0;
+          background: #fafafa;
+          width: 100%;
+          height: auto;
+          max-height: 31.25em;
+          overflow: auto; }
+          .panel-products--fields {
+            background: #8b51f5;
+            color: #fff;
+            border-bottom: 1px solid #aeaeae;
+            padding: 0.625em; }
+            .panel-products--fields span {
+              flex: 1; }
+              .panel-products--fields span:first-child {
+                flex-grow: 2; }
+          .panel-products--list li {
+            border-bottom: 1px solid #aeaeae;
+            padding: 0.9375em 0.625em; }
+            .panel-products--list li span {
+              flex: 1; }
+              .panel-products--list li span:first-child {
+                flex-grow: 2; }
+            .panel-products--list li:hover {
+              background: #fff; }
+          .panel-products--list li {
+            cursor: pointer; }
+
+        .panel-users {
+          margin-top: 3.4375em;
+          font-family: 'Comfortaa', cursive;
+          border: 1px solid #e1e1e1;
+          padding: 0 0 1.5625em 0;
+          background: #fafafa;
+          width: 100%;
+          height: auto;
+          max-height: 31.25em;
+          overflow: auto; }
+          .panel-users--fields {
+            background: #8b51f5;
+            color: #fff;
+            border-bottom: 1px solid #aeaeae;
+            padding: 0.625em; }
+            .panel-users--fields span {
+              flex: 1; }
+              .panel-users--fields span:first-child {
+                flex-grow: 2; }
+          .panel-users--list li {
+            border-bottom: 1px solid #aeaeae;
+            padding: 0.9375em 0.625em; }
+            .panel-users--list li span {
+              flex: 1; }
+              .panel-users--list li span:first-child {
+                flex-grow: 2; }
+            .panel-users--list li:hover {
+              background: #fff; }
+          .panel-users--list li {
+            cursor: pointer; }
+
+            .progress-bar {
+              position: relative;
+              width: 18.75em;
+              height: 0.625em;
+              margin: 0.9375em 0;
+              border-radius: 3.125em;
+              background: #9b69f6;
+              border: 2px solid #8b51f5; }
+              .progress-bar .progress {
+                position: absolute;
+                background: #fff;
+                width: 0;
+                height: 100%;
+                border-radius: 3.125em;
+                transition: 300ms ease-in; }
+

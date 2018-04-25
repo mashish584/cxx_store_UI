@@ -1,0 +1,20 @@
+<div class="panel-users">
+    <div class="panel-users--fields">
+        <span>Email</span>
+        <span>Username</span>
+        <span>Role</span>
+        <span>Location</span>
+        <span>Status</span>
+        <span></span>
+    </div>
+    <div class="panel-users--list">
+        <li *ngFor="let user of users;">
+            <span>{{user?.email}}</span>
+            <span>{{user?.username}}</span>
+            <span>{{user?.role}}</span>
+            <span>{{user?.location}}</span>
+            <span>{{user?.status}}</span>
+            <span (click)="deleteUser(user._id)" class="fa fa-trash"></span>
+        </li>
+    </div>
+</div>

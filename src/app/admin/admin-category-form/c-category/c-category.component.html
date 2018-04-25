@@ -1,29 +1,13 @@
 <div class="child-category">
-    <form action="" class="panel-form">
-        <select name="parent_cat" id="">
-            <option value="">1</option>
+    <div class="panel-form">
+        <select [(ngModel)]="parent">
+            <option value="">Parent Category</option>
+            <option *ngFor="let category of categories;let i=index;" value="{{category?.name}}">{{category?.name}}</option>
         </select>
-        <input type="text" name="child_cat" placeholder="Child Category">
-        <button class="btn btn-submit">ADD SUB CATEGORY</button>
-    </form>
+        <input type="text" [(ngModel)]="name" placeholder="Child Category">
+        <button [disabled]="!name || !type || !parent" (click)="addCategory()" class="btn btn-submit">ADD SUB CATEGORY</button>
+    </div>
     <ul class="category-list">
-        <li>Item <span>(Parent)</span></li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
+        <li *ngFor="let child of c_categories;let i=index;">{{child?.name}} <span>({{child?.parent}})</span></li>
     </ul>
 </div>

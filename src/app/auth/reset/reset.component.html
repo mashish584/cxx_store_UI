@@ -1,0 +1,18 @@
+<!-- Start: Site Content Container -->
+<div class="site-content">
+    <form [formGroup]="resetForm" (ngSubmit) = "resetPassword()"  class="user-form">
+        <div *ngIf="error && !success"  class="flash err">{{error}}<span close-flash class="fa fa-close"></span></div>
+        <div *ngIf="success && !error"  class="flash success">{{success}}<span close-flash class="fa fa-close"></span></div>
+        <div class="user-form--group">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" id="password" class="user-input">
+        </div>
+        <div class="user-form--group">
+            <label for="confirm">Confirm Password</label>
+            <input type="password" (keyup)="matchPassword($event)" formControlName="confirm" id="confirm" class="user-input">
+            <span *ngIf="confirmError">Password not matched.</span>
+        </div>
+        <button [disabled]="resetForm.invalid" type="submit" class="btn btn-gr">Reset</button>
+    </form>
+</div>
+    <!-- End: Site Content Container -->

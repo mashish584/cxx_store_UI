@@ -6,26 +6,19 @@
             <span class="fa fa-search"></span>
             <input type="search" name="search" placeholder="Search for mobiles,laptops......"/>
         </div>
-        <a [routerLink]="['admin']" class="admin-btn btn btn-in">Admin</a>
-        <a [routerLink]="['signup']" class="login-btn btn btn-gr">Sign Up</a>
-        <a [routerLink]="['signin']" class="login-btn btn btn-gr">Sign In</a>
+        <a *ngIf="isLoggedIn && isAdmin" [routerLink]="['admin']" class="admin-btn btn btn-in">Admin</a>
+        <a *ngIf="!isLoggedIn"  [routerLink]="['signup']" class="login-btn btn btn-gr">Sign Up</a>
+        <a *ngIf="!isLoggedIn" [routerLink]="['signin']" class="login-btn btn btn-gr">Sign In</a>
+        <a *ngIf="isLoggedIn" (click)="signOut()" class="login-btn btn btn-gr">Sign Out</a>
         <a href="" class="cart-btn btn"><span class="fa fa-shopping-cart"><i class="cart-badge">2</i></span></a>
     </div>
     <div class="site-nav--secondary">
         <ul class="nav-list">
-            <li class="nav-list--item">Electronics
+            <li *ngFor="let category of categories" class="nav-list--item">{{category?.name}}
                     <i class="fa fa-angle-down"></i>
-                    <div class="nav-list--dropdown">
-                        <a href="">Item1</a>
-                        <a href="">Item2</a>
-                        <a href="">Item3</a>
+                    <div *ngIf="category.childs[0]" class="nav-list--dropdown">
+                        <a href="" *ngFor="let child of category.childs">{{child?.name}}</a>
                     </div>
-            </li>
-            <li class="nav-list--item">Clothings
-                <i class="fa fa-angle-down"></i>
-            </li>
-            <li class="nav-list--item">Footwears
-                <i class="fa fa-angle-down"></i>
             </li>
         </ul>
     </div>

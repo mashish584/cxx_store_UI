@@ -1,4 +1,9 @@
-<form [formGroup]="productForm" (ngSubmit)="addProduct()" class="panel-form">
+<div class="panel-actions">
+    <a [routerLink]="['/admin/products']" class="btn btn-admin"><i class="fa fa-angle-left"></i></a>
+    <a *ngIf="editMode" [routerLink]="['/admin/product/add']" class="btn btn-admin"><i class="fa fa-plus"></i>Add New Product</a>
+    <span *ngIf="editMode" (click)="removeProduct()" class="btn btn-danger"><i class="fa fa-trash" ></i>Remove Product</span>
+</div>
+<form [formGroup]="productForm" (ngSubmit)="(editMode)?updateProduct():addProduct()" class="panel-form">
     <div class="form-group">
         <label for="product-name">Product Name</label>
         <input type="text" formControlName="product_name" id="product-name">
@@ -16,14 +21,18 @@
     <div class="select-group full">
        <div class="select-container full">
             <label for="">Category</label>
-            <select formControlName="product_p_cat">
-                <option value="Electronics" selected>Electronics</option>
+            <select  (change)="loadChild($event.target.value)" formControlName="product_p_cat">
+                <option value="">Parent Category</option>
+                <option *ngFor="let category of categories;let i=index;"
+                    value="{{category?.name}}">{{category?.name}}</option>
             </select>
        </div>
        <div class="select-container full">
            <label for="">Sub Category</label>
            <select formControlName="product_c_cat">
-                <option value="Computers" selected>Computers</option>
+                <option value="">Child Category</option>
+                <option *ngFor="let category of c_Categories;let i=index;"
+                    value="{{category?.name}}" >{{category?.name}}</option>
             </select>
        </div>
     </div>
@@ -43,12 +52,19 @@
     </div>
     <div class="form-group">
         <label for="">Upload Image</label>
-        <label for="upload" class="btn btn-file"><i class="fa fa-camera"></i>Upload Image</label>
-        <input type="file" name="upload" id="upload" #upload accept="image/*" >
+        <div *ngIf="editMode">
+            <img [src]="imgSrc" [alt]="product.productImg" style="width:100px;height:100px;margin:25px 0;">
+            <div *ngIf="imageUploadProgress"  class="progress-bar">
+                <div class="progress" #progress></div>
+            </div>
+            <span *ngIf="imageUploadProgress">{{percentageUpload}}% done</span>
+        </div>
+        <label for="upload" class="btn btn-file"><i class="fa fa-camera"></i>{{(editMode)?"Change Image":"Upload Image"}}</label>
+        <input (change) = "editMode ? updateProductImage(image) :false" type="file" name="upload" id="upload" #upload accept="image/*" >
     </div>
     <div class="form-group">
         <label for="description">Product Featured Description</label>
         <textarea formControlName="product_desc" id="description" maxlength="350"></textarea>
     </div>
-    <button [disabled]="productForm.invalid" class="btn btn-submit">ADD PRODUCT</button>
+    <button [disabled]="productForm.invalid" class="btn btn-submit">{{(editMode)?'Update Product':'Add Product'}}</button>
 </form>
