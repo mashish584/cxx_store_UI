@@ -23,7 +23,8 @@ export class AppComponent implements OnInit{
       >=> header component and footer component
     */
     router.events.subscribe((event) => {
-
+        //set scroll position to top
+        window.scrollTo(0,0);
         if(event instanceof NavigationStart){
             let { url } = event;
             this.isAdmin = url.match('/admin') ? true:false;
@@ -60,9 +61,11 @@ export class AppComponent implements OnInit{
               // set notification for categories loaded
               this.productService.sub_menuUpdate.next();
            },
-            //trow error if any
+            //throw error if any
            (error:any) => alert("Something went wrong")
          )
   }
+
+
 
 }

@@ -3,9 +3,9 @@
     <div class="site-content--main">
         <div class="single-product">
             <div class="single-product--header">
-                <img src="images/image_6.png" alt="">
+                <img *ngIf="product?.productImg" src='http://localhost:8080/images/{{product.productImg}}' alt="">
                 <div class="product-content">
-                    <span class="product-content--title">Skmei Black Ananlog - Digital</span>
+                    <span class="product-content--title">{{product?.productTitle}}</span>
                     <div class="product-content--extra">
                         <div class="rating">
                             <i class="fa fa-star"></i>
@@ -14,12 +14,10 @@
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <span class="seller">Sold By <a href="">ANC</a></span>
+                        <span class="seller">Sold By <a href="">CXX</a></span>
                     </div>
-                    <span class="product-content--price">$500</span>
-                    <div class="product-content--desc">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-                    </div>
+                    <span class="product-content--price">${{product?.productPrice}}</span>
+                    <div class="product-content--desc">{{product?.product_desc}}</div>
                     <div class="product-content--actions">
                         <a href="" class="btn btn-gr-drk">ADD TO CART</a>
                     </div>
@@ -29,14 +27,8 @@
                 <div class="single-features">
                     <h2>Specs</h2>
                     <ul class="spec-list">
-                        <li class="spec-list--item">
-                            <span>Brand</span> <span>Huawei</span>
-                        </li>
-                        <li class="spec-list--item">
-                            <span>Weight</span> <span>1kg</span>
-                        </li>
-                        <li class="spec-list--item">
-                            <span>Color</span> <span>Gold</span>
+                        <li *ngFor="let type of featureTypes;let i=index;" class="spec-list--item">
+                            <span>{{type}}</span> <span>{{featureValues[i]}}</span>
                         </li>
                     </ul>
                 </div>
@@ -46,7 +38,7 @@
                         <div class="review-list--item">
                             <div class="user-review">
                                 <div class="profile-image">
-                                    <img src="images/image_2.jpg" alt="">
+                                    <img src="https://unsplash.it/200/200" alt="">
                                 </div>
                                 <div class="review-content">
                                     <h3>Ashish Mehra</h3>
@@ -70,7 +62,7 @@
                         <div class="review-list--item">
                             <div class="user-review">
                                 <div class="profile-image">
-                                    <img src="images/image_2.jpg" alt="">
+                                    <img src="https://unsplash.it/200/200" alt="">
                                 </div>
                                 <div class="review-content">
                                     <h3>Ashish Mehra</h3>

@@ -12,6 +12,7 @@ import * as auth from './auth';
 import * as products from './products';
 
 import { APP_ROUTES } from './app.route';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { APP_ROUTES } from './app.route';
     ...admin.adminComponents,
     ...products.productComponents,
     ...core.coreComponents,
-    core.CloseFlashDirective
+    core.CloseFlashDirective,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { APP_ROUTES } from './app.route';
     core.ProductService,
     core.AuthService,
     core.UserService,
+    core.CartService,
     admin.AdminGuard,
     admin.AdminChildGuard,
     auth.AuthGuard,

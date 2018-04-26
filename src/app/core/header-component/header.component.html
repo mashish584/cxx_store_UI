@@ -1,5 +1,5 @@
 <!-- Start: Site Header -->
-<div class="site-header">
+<div class="site-header" >
     <div class="site-nav--primary">
         <a [routerLink]="['']" class="site-logo">CXX</a>
         <div class="search-form">
@@ -10,14 +10,14 @@
         <a *ngIf="!isLoggedIn"  [routerLink]="['signup']" class="login-btn btn btn-gr">Sign Up</a>
         <a *ngIf="!isLoggedIn" [routerLink]="['signin']" class="login-btn btn btn-gr">Sign In</a>
         <a *ngIf="isLoggedIn" (click)="signOut()" class="login-btn btn btn-gr">Sign Out</a>
-        <a href="" class="cart-btn btn"><span class="fa fa-shopping-cart"><i class="cart-badge">2</i></span></a>
+        <a [routerLink]="['cart']" class="cart-btn btn"><span class="fa fa-shopping-cart"><i class="cart-badge">{{countCart}}</i></span></a>
     </div>
     <div class="site-nav--secondary">
         <ul class="nav-list">
             <li *ngFor="let category of categories" class="nav-list--item">{{category?.name}}
                     <i class="fa fa-angle-down"></i>
                     <div *ngIf="category.childs[0]" class="nav-list--dropdown">
-                        <a href="" *ngFor="let child of category.childs">{{child?.name}}</a>
+                        <a [routerLink]="['products/category',child?.name]" [queryParams]="{child:true}" *ngFor="let child of category.childs">{{child?.name}}</a>
                     </div>
             </li>
         </ul>

@@ -1,3 +1,4 @@
+import { CartService } from './../services/cart.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
@@ -21,10 +22,17 @@ export class HeaderComponent implements OnInit,OnDestroy{
     // store categories
     categories:Category[];
 
+    // count items in cart
+    countCart:Number = 0;
+
     // storing subscription
     subscription:Subscription;
 
-    constructor(private authService:AuthService,private productService:ProductService,private route:ActivatedRoute){}
+    constructor(private authService:AuthService,private productService:ProductService,private cartService:CartService,private route:ActivatedRoute){
+        this.countCart = this.cartService.getCart().count;
+        this.cartService.cartUpdate
+            .subscribe((data) =>(this.countCart = this.cartService.getCart().count));
+    }
 
     ngOnInit(){
         this.categories = this.productService.categories;

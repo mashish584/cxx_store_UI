@@ -1,0 +1,33 @@
+<div class="site-content">
+  <div class="site-content--main">
+      <div class="cart-container">
+          <div class="cart-header">
+              <h2>Shopping Cart ({{cart.count}})</h2>
+              <button *ngIf="cart.count>0" class="btn btn-info">Checkout <i class="fa fa-angle-right"></i></button>
+          </div>
+          <div class="cart-content">
+              <div *ngFor="let item of cart.items" class="cart-content--item">
+                  <img src="http://localhost:8080/images/{{item.image}}" alt="">
+                  <div class="item-detail">
+                      <h4>{{item.title}}</h4>
+                      <div class="actions">
+                          <button class="btn" (click)="removeItem(item.id)"><i class="fa fa-trash"></i> Remove</button>
+                          <div>
+                            <label for="">Qty:</label>
+                            <input type="number" name="qty" id="qty" (blur)="updateQuantity(item.id,$event)" value={{item.qty}}>
+                          </div>
+                          <span>${{item.price}}</span>
+                      </div>
+                  </div>
+              </div>
+              <p  style="text-align:center;" *ngIf="cart.count == 0">0 items in cart</p>
+          </div>
+          <div *ngIf="cart.count > 0" class="cart-footer">
+              <span>${{cart.total}}</span>
+              <!-- <span>+ Shipment $20</span> -->
+              <hr>
+              <span>TOTAL <b>${{cart.total}}</b></span>
+          </div>
+      </div>
+  </div>
+</div>

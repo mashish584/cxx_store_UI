@@ -30,6 +30,21 @@ export class ProductService{
         return this.http.get<any>(`http://localhost:8080/api/products/${id}`,{observe:'response'});
     }
 
+    // get random products
+    getRandomProducts(){
+        return this.http.get<any>(`http://localhost:8080/api/products/12/random`,{observe:'response'});
+    }
+
+    // get products based on Child Category
+    getProductsBySubCategory(name){
+        return this.http.get<any>(`http://localhost:8080/api/products/category/child/${name}`,{observe:'response'});
+    }
+
+     // get products based on Parent Category
+     getProductsByParentCategory(name){
+        return this.http.get<any>(`http://localhost:8080/api/products/category/parent/${name}`,{observe:'response'});
+    }
+
     // get all product categories
     getProductCategories(){
         return this.http.get<any>('http://localhost:8080/api/products/categories/all',{observe:'response'});

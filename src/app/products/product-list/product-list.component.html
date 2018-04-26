@@ -1,14 +1,14 @@
  <!-- Start: Site Content Container -->
  <div class="site-content">
     <div class="site-content--featured">
-        <h2 class="featured-heading">SHOES</h2>
+        <h2 class="featured-heading">{{this.title}}</h2>
         <div class="featured-image">
-            <img src="images/image_1.jpg" alt="">
+            <img src="https://unsplash.it/500/500" alt="">
         </div>
         <div class="featured-layer"></div>
     </div>
     <div class="site-content--main">
-        <div class="filter-options">
+        <!-- <div class="filter-options">
             <div class="select-group">
                 <select name="" id="">
                     <option value="">VALUE 1</option>
@@ -19,113 +19,18 @@
                 </select>
                 <span class="fa fa-angle-down"></span>
             </div>
-        </div>
+        </div> -->
         <div class="products-container single-category">
-            <div class="product-container--item">
+            <div *ngFor="let product of products;" class="product-container--item">
                 <div class="item-layer">
                     <a href="" class="btn btn-bl"><i class="fa fa-shopping-cart"></i>Add To Cart</a>
-                    <a href="" class="btn btn-gr"><i class="fa fa-eye"></i>See Product</a>
+                    <a [routerLink]="['/products',product._id]" class="btn btn-gr"><i class="fa fa-eye"></i>See Product</a>
                 </div>
                 <div class="item-image">
-                    <img src="images/image_3.png" alt="">
+                    <img src="http://localhost:8080/images/{{product.productImg}}" alt="">
                 </div>
                 <div class="item-content">
-                    <h3>Nikon D100</h3>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-container--item">
-                <div class="item-layer">
-                    <a href="" class="btn btn-bl"><i class="fa fa-shopping-cart"></i>Add To Cart</a>
-                    <a href="" class="btn btn-gr"><i class="fa fa-eye"></i>See Product</a>
-                </div>
-                <div class="item-image">
-                    <img src="images/image_4.png" alt="">
-                </div>
-                <div class="item-content">
-                    <h3>Nikon D100</h3>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-container--item">
-                <div class="item-layer">
-                    <a href="" class="btn btn-bl"><i class="fa fa-shopping-cart"></i>Add To Cart</a>
-                    <a href="" class="btn btn-gr"><i class="fa fa-eye"></i>See Product</a>
-                </div>
-                <div class="item-image">
-                    <img src="images/image_5.png" alt="">
-                </div>
-                <div class="item-content">
-                    <h3>Nikon D100</h3>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-container--item">
-                <div class="item-layer">
-                    <a href="" class="btn btn-bl"><i class="fa fa-shopping-cart"></i>Add To Cart</a>
-                    <a href="" class="btn btn-gr"><i class="fa fa-eye"></i>See Product</a>
-                </div>
-                <div class="item-image">
-                    <img src="images/image_3.png" alt="">
-                </div>
-                <div class="item-content">
-                    <h3>Nikon D100</h3>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-container--item">
-                <div class="item-layer">
-                    <a href="" class="btn btn-bl"><i class="fa fa-shopping-cart"></i>Add To Cart</a>
-                    <a href="" class="btn btn-gr"><i class="fa fa-eye"></i>See Product</a>
-                </div>
-                <div class="item-image">
-                    <img src="images/image_3.png" alt="">
-                </div>
-                <div class="item-content">
-                    <h3>Nikon D100</h3>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="product-container--item">
-                <div class="item-layer">
-                    <a href="" class="btn btn-bl"><i class="fa fa-shopping-cart"></i>Add To Cart</a>
-                    <a href="" class="btn btn-gr"><i class="fa fa-eye"></i>See Product</a>
-                </div>
-                <div class="item-image">
-                    <img src="images/image_3.png" alt="">
-                </div>
-                <div class="item-content">
-                    <h3>Nikon D100</h3>
+                    <h3>{{product?.productTitle|slice:0:25}}...</h3>
                     <div class="rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -136,7 +41,8 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-in">Load More</button>
+        <p  style="text-align:center;" *ngIf="products?.length == 0">{{this.title}} are not available.</p>
+        <button *ngIf="products?.length == 12" class="btn btn-in">Load More</button>
     </div>
 </div>
 <!-- End: Site Content Container -->

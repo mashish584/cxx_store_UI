@@ -4,6 +4,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomepageComponent } from './homepage/homepage.component'
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 import * as admin from './admin';
 import * as auth from './auth';
@@ -25,10 +26,11 @@ export const ROUTES:Routes = [
         { path:'users', component: admin.AdminUsersComponent }
     ]},
     { path : 'products',children:[
-        { path :'', component:HomepageComponent },
+        { path:'', component:HomepageComponent },
         { path: ':id', component:products.SingleProduct },
-        { path: 'category/:id', component:products.ProductList }
+        { path: 'category/:name', component:products.ProductList }
     ]},
+    { path: 'cart', component:ShoppingCartComponent },
     { path:'**', redirectTo:'', pathMatch:'full' }
 ];
 
