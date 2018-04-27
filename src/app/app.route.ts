@@ -1,14 +1,12 @@
-import { AdminProductForm } from './admin/admin-product-form/admin-product-form.component';
-
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomepageComponent } from './homepage/homepage.component'
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 import * as admin from './admin';
 import * as auth from './auth';
 import * as products from './products';
+import * as shoppingCart from './shopping-cart';
 
 export const ROUTES:Routes = [
     { path : '', component:HomepageComponent },
@@ -30,7 +28,10 @@ export const ROUTES:Routes = [
         { path: ':id', component:products.SingleProduct },
         { path: 'category/:name', component:products.ProductList }
     ]},
-    { path: 'cart', component:ShoppingCartComponent },
+    { path: 'cart',children:[
+        {path : '',component:shoppingCart.ShoppingCartComponent},
+        {path:'checkout',canActivate:[auth.AuthGuard],component:shoppingCart.CheckoutComponent}
+    ]},
     { path:'**', redirectTo:'', pathMatch:'full' }
 ];
 

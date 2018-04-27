@@ -10,9 +10,10 @@ import * as core from './core';
 import * as admin from './admin';
 import * as auth from './auth';
 import * as products from './products';
+import * as shoppingCart from './shopping-cart'
 
 import { APP_ROUTES } from './app.route';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +23,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     ...admin.adminComponents,
     ...products.productComponents,
     ...core.coreComponents,
-    core.CloseFlashDirective,
-    ShoppingCartComponent
+    ...shoppingCart.cartComponenets,
+    ...core.directives
   ],
   imports: [
     BrowserModule,
@@ -33,14 +34,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     APP_ROUTES,
   ],
   providers: [
-    core.ProductService,
-    core.AuthService,
-    core.UserService,
-    core.CartService,
-    admin.AdminGuard,
-    admin.AdminChildGuard,
-    auth.AuthGuard,
-    auth.UnAuthGuard,
+    ...core.services,
+    ...admin.guards,
+    ...auth.guards
   ],
   bootstrap: [AppComponent],
 })

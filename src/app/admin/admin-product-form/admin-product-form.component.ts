@@ -1,8 +1,8 @@
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { ProductService } from './../../core/services/products.service';
 import { Component, OnInit, ViewChild, ElementRef, trigger, Renderer2 } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { ProductService } from '../../core/services';
 
 @Component({
   selector: 'admin-product-form',

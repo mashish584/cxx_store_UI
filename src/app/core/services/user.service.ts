@@ -14,6 +14,16 @@ export class UserService{
         return this.http.get('http://localhost:8080/api/users',{observe:'response'});
     }
 
+    // get loggedIn user email
+    getUserEmail(){
+        const token = localStorage.getItem('authUser');
+        //setting Authorization header with token
+        let headers = new HttpHeaders().append('Authorization',token);
+        // >-> send request on server for token verification
+        return this.http
+                    .get(`http://localhost:8080/api/users/email`,{headers:headers,observe:'response'});
+    }
+
     //Activate user account if token
     // is valid or not expired
     activateAccount(token):Observable<any>{

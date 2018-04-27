@@ -1,13 +1,10 @@
 import { OnInit, OnDestroy } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
-import { AdminService } from './../services/admin.service';
-
-
+import { AdminService } from '../services';
 
 @Component({
     selector:'admin-home',
     templateUrl:'./admin-home.component.html',
-    providers: [AdminService]
 })
 
 export class AdminHome implements OnInit,OnDestroy{

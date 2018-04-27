@@ -1,0 +1,14 @@
+<div class="site-content">
+  <div class="site-content--main">
+      <form #checkout="ngForm" (ngSubmit)="onSubmit(checkout)" class="checkout">
+        <div class="form-row">
+          <h2 class="card-info">Make Payment</h2>
+          <div id="card-info" #cardInfo></div>
+
+          <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+        </div>
+
+        <button type="submit">Pay</button>
+      </form>
+  </div>
+</div>

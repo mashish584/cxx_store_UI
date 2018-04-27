@@ -3,7 +3,7 @@
       <div class="cart-container">
           <div class="cart-header">
               <h2>Shopping Cart ({{cart.count}})</h2>
-              <button *ngIf="cart.count>0" class="btn btn-info">Checkout <i class="fa fa-angle-right"></i></button>
+              <button (click)="doCheckout()" *ngIf="cart.count>0" class="btn btn-info">Checkout <i class="fa fa-angle-right"></i></button>
           </div>
           <div class="cart-content">
               <div *ngFor="let item of cart.items" class="cart-content--item">

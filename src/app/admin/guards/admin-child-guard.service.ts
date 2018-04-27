@@ -5,9 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/catch';
 
-
-
-import { AuthService } from './../../core/services/auth.service';
+import { AuthService } from '../../core/services';
 
 
 @Injectable()

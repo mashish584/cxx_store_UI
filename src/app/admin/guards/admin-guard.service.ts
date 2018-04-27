@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { AuthService } from './../../core/services/auth.service';
+import { AuthService } from '../../core/services';
 
 
 @Injectable()

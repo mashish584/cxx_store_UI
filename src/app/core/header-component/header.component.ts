@@ -1,10 +1,8 @@
-import { CartService } from './../services/cart.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AuthService } from './../services/auth.service';
-import { ProductService } from './../services/products.service';
+import { AuthService,CartService,ProductService } from './../services';
 
 
 @Component({
