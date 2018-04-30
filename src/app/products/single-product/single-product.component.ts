@@ -1,18 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { ProductService,CartService, UtilsService } from '../../core/services';
+import { ProductService,CartService, UtilsService, UserService } from '../../core/services';
 
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
 })
-export class SingleProduct implements OnInit {
+export class SingleProduct implements OnInit,AfterViewInit {
   product;
   featureTypes: String[] = [];
   featureValues: String[] = [];
 
   reviewForm: boolean = false;
+
+  // boolean to check user is allowed
+  // for review or not
+  userAllowToReview:boolean = false;
 
   // stars tracking
   fullStars = [];
@@ -28,10 +32,15 @@ export class SingleProduct implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService:CartService,
-    private utilsService:UtilsService;
-  ) {}
+    private userService:UserService,
+    private utilsService:UtilsService
+  ) { }
 
   ngOnInit() {
+    /*
+      >=> Get the product with route
+      >=> param {id}
+    */
     this.route.params.subscribe((params: Params) => {
       let { id } = params;
       this.productService.getProduct(id).subscribe(
@@ -56,6 +65,33 @@ export class SingleProduct implements OnInit {
     });
   }
 
+  ngAfterViewInit(){
+    /*
+      >=> Checking is user is allow to
+      >=> review current product or not
+    */
+    this.userService.getUserDetail()
+        .subscribe(
+          (data:any) => {
+            let {user} = data.body;
+            let {cart} = user.orders;
+            let {reviews} = this.product;
+            let purchasedItem = false;
+            let reviewedItem = false;
+            user.orders.map(order => {
+              order.cart.map(item => {
+                item.items.map(item => (purchasedItem = item.id === this.product._id ? true:false));
+              });
+            });
+            reviews.map(review => (reviewedItem = review.user._id === user._id ? true:false));
+            this.userAllowToReview = purchasedItem && !reviewedItem;
+          },
+          (error:any) => {
+            console.error(error);
+          }
+        );
+  }
+
   //show review form
   showForm() {
     this.reviewForm = true;
@@ -66,7 +102,10 @@ export class SingleProduct implements OnInit {
     this.reviewForm = false;
   }
 
- //submit user review
+  /*
+      >=> Submit user review
+      >=> and update product reviews
+  */
   submitReview(form) {
     let data = { ...form.value, product: this.product._id };
     this.productService.submitProductReview(data).subscribe(
@@ -74,6 +113,7 @@ export class SingleProduct implements OnInit {
         let { review } = data.body;
         this.product.reviews.push(review);
         this.reviewForm = false;
+        this.userAllowToReview = false;
         form.reset();
       },
       (error: any) => {

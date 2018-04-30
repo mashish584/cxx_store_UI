@@ -32,9 +32,9 @@
                 </div>
                 <div class="single-reviews">
                     <h2>Reviews</h2>
-                    <span (click)="showForm()" class="reveal-text">Submit your experience with product</span>
+                    <span *ngIf="userAllowToReview" (click)="showForm()" class="reveal-text">Submit your experience with product</span>
                     <div class="review-list">
-                        <div *ngFor="let review of product.reviews;let i=index;" class="review-list--item">
+                        <div *ngFor="let review of product?.reviews;let i=index;" class="review-list--item">
                             <div class="user-review">
                                 <div class="profile-image">
                                     <img src="https://unsplash.it/200/200" alt="">
@@ -64,20 +64,18 @@
 
 
     <!-- Review Form -->
-    <form (ngSubmit)="submitReview(f)" [ngClass]="{'reveal':reviewForm}" class="review-form" #f="ngForm">
+    <form *ngIf="userAllowToReview" (ngSubmit)="submitReview(f)" [ngClass]="{'reveal':reviewForm}" class="review-form" #f="ngForm">
         <span (click)="hideForm()" class="close-btn fa fa-close"></span>
         <div class="review-form--meta">
             <img src="http://localhost:8080/images/{{product.productImg}}" alt="">
             <div class="details">
-                <h4>Iphone 6+</h4>
+                <h4>{{product?.productName}}</h4>
                 <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                        <i *ngFor="let stars of fullStars[0];" class="fa fa-star"></i>
+                        <i *ngFor="let stars of halfStars[0];" class="fa fa-star-half"></i>
+                        <i *ngFor="let stars of noStars[0];" class="fa fa-star-o"></i>
                 </div>
-                <span>Reviews : 121</span>
+                <span>Total Reviews : {{product?.reviews?.length}}</span>
             </div>
         </div>
         <textarea ngModel name="review" id="" cols="30" rows="10" placeholder="Your Review" required></textarea>

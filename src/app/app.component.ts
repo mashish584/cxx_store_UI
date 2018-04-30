@@ -129,7 +129,6 @@ export class AppComponent implements OnInit {
           (data: any) => {
             let { user } = data.body;
             this.orders = user.orders;
-            console.log(user);
           },
           (error: any) => {
             console.log(error);
