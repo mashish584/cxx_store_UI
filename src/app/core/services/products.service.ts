@@ -20,8 +20,8 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   /*
-        >=> UGet All Products
-    */
+      >=> UGet All Products
+  */
   getProducts() {
     return this.http.get<any>('http://localhost:8080/api/products', {
       observe: 'response',
@@ -29,8 +29,8 @@ export class ProductService {
   }
 
   /*
-        >=> Get Single Product
-    */
+      >=> Get Single Product
+  */
   getProduct(id) {
     return this.http.get<any>(`http://localhost:8080/api/products/${id}`, {
       observe: 'response',
@@ -38,8 +38,8 @@ export class ProductService {
   }
 
   /*
-        >=> Get Random Products
-    */
+      >=> Get Random Products
+  */
   getRandomProducts(total) {
     return this.http.get<any>(`http://localhost:8080/api/products/${total}/random`, {
       observe: 'response',
@@ -47,8 +47,8 @@ export class ProductService {
   }
 
   /*
-         >=> Get product based on sub Category
-    */
+        >=> Get product based on sub Category
+  */
   getProductsBySubCategory(name) {
     return this.http.get<any>(
       `http://localhost:8080/api/products/category/child/${name}`,
@@ -57,8 +57,8 @@ export class ProductService {
   }
 
   /*
-         >=> Get product based on parent Category
-    */
+        >=> Get product based on parent Category
+  */
   getProductsByParentCategory(name) {
     return this.http.get<any>(
       `http://localhost:8080/api/products/category/parent/${name}`,
@@ -67,8 +67,8 @@ export class ProductService {
   }
 
   /*
-         >=> Get All the Product Categories
-    */
+        >=> Get All the Product Categories
+  */
   getProductCategories() {
     return this.http.get<any>(
       'http://localhost:8080/api/products/categories/all',
@@ -77,8 +77,15 @@ export class ProductService {
   }
 
   /*
-         >=> Store Product on server
-    */
+        >=> Search Product
+  */
+  searchProduct(value){
+    return this.http.get<any>(`http://localhost:8080/api/search?q=${value}`);
+  }
+
+  /*
+        >=> Store Product on server
+  */
   storeProduct(data) {
     return this.http.post<any>('http://localhost:8080/api/products/add', data, {
       observe: 'response',
@@ -86,8 +93,8 @@ export class ProductService {
   }
 
   /*
-         >=> Store Product Review
-    */
+        >=> Store Product Review
+  */
   submitProductReview(data) {
     const token = localStorage.getItem('authUser');
     //setting Authorization header with token
@@ -99,8 +106,8 @@ export class ProductService {
   }
 
   /*
-         >=> Update Product Details
-    */
+        >=> Update Product Details
+  */
   updateProduct(data, id) {
     return this.http.put<any>(
       `http://localhost:8080/api/products/${id}`,
@@ -112,8 +119,8 @@ export class ProductService {
   }
 
   /*
-         >=> Update progress image by enabling reportProgress;
-    */
+        >=> Update progress image by enabling reportProgress;
+  */
   updateProductImage(data, id) {
     const req = new HttpRequest(
       'PUT',
@@ -127,8 +134,8 @@ export class ProductService {
   }
 
   /*
-        >=> Store Product Category (Parent and Child Both)
-    */
+      >=> Store Product Category (Parent and Child Both)
+  */
   storeProductCategory(data, parent = false) {
     return this.http
       .post<any>('http://localhost:8080/api/products/category/add', data, {
@@ -145,8 +152,8 @@ export class ProductService {
   }
 
   /*
-         >=> Remove product from server
-    */
+        >=> Remove product from server
+  */
   removeProduct(id) {
     return this.http.delete<any>(`http://localhost:8080/api/products/${id}`, {
       observe: 'response',
@@ -154,8 +161,8 @@ export class ProductService {
   }
 
   /*
-         >=> Make cart Payment
-    */
+        >=> Make cart Payment
+  */
   makeCharge(cart, token, email) {
     return this.http.post<any>(
       'http://localhost:8080/api/products/checkout',

@@ -28,6 +28,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // count items in cart
   countCart: Number = 0;
 
+  // store search list
+  searchList;
+  searchLoader:boolean = false;
+
+  // tracking search last key press
+  lastkeyPress:Number = 0;
+
   // storing subscription
   subscription: Subscription;
 
@@ -91,4 +98,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private triggerShowOrders() {
     this.showOrders.next(true);
   }
+
+  // search product
+  private searchProduct($event){
+   this.searchLoader = true;
+   this.searchList = [];
+   let {value} = $event.target;
+   if($event.timeStamp - Number(this.lastkeyPress) > 200 && value.length > 0){
+     this.productService.searchProduct(value)
+         .subscribe(
+           (data:any) => {
+             this.searchList = data;
+             this.searchLoader = false;
+           },
+           (error:any) => {
+             console.error(error);
+             this.searchLoader = false;
+           }
+         );
+   }
+   this.lastkeyPress = $event.timeStamp;
+  }
+
 }

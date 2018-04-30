@@ -18,6 +18,9 @@ export class SingleProduct implements OnInit,AfterViewInit {
   // for review or not
   userAllowToReview:boolean = false;
 
+  // store user details
+  user;
+
   // stars tracking
   fullStars = [];
   halfStars = [];
@@ -74,6 +77,7 @@ export class SingleProduct implements OnInit,AfterViewInit {
         .subscribe(
           (data:any) => {
             let {user} = data.body;
+            this.user = user;
             let {cart} = user.orders;
             let {reviews} = this.product;
             let purchasedItem = false;
@@ -111,6 +115,7 @@ export class SingleProduct implements OnInit,AfterViewInit {
     this.productService.submitProductReview(data).subscribe(
       (data: any) => {
         let { review } = data.body;
+        review.user = this.user;
         this.product.reviews.push(review);
         this.reviewForm = false;
         this.userAllowToReview = false;

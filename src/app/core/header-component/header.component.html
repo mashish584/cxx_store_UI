@@ -4,7 +4,11 @@
         <a [routerLink]="['']" class="site-logo">CXX</a>
         <div class="search-form">
             <span class="fa fa-search"></span>
-            <input type="search" name="search" placeholder="Search for mobiles,laptops......"/>
+            <img *ngIf="searchLoader" src="http://www.betterbutter.in/images/loading_recipe_image.gif" alt="" class="search-loader">
+            <input type="search" (keyup)="searchProduct($event)" placeholder="Search for mobiles,laptops......"/>
+            <div *ngIf="searchList?.products" class="search-list">
+                <a [routerLink]="['products',product?._id]" *ngFor="let product of searchList?.products">{{product?.title}}</a>
+            </div>
         </div>
         <a *ngIf="isLoggedIn && isAdmin" [routerLink]="['admin']" class="admin-btn btn btn-in">Admin</a>
         <a *ngIf="!isLoggedIn"  [routerLink]="['signup']" class="login-btn btn btn-gr">Sign Up</a>
