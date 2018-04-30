@@ -39,7 +39,9 @@ input[type='file'] {
 .parent-category .category-list li,
 .child-category .category-list li,
 .panel-products--fields,
+.panel-orders--fields,
 .panel-products--list li,
+.panel-orders--list li,
 .panel-users--fields,
 .panel-users--list li {
   display: flex;
@@ -295,17 +297,17 @@ input[type='file'] {
 .child-category .category-list li span {
   margin-left: auto;
 }
-.panel-products {
+.panel-table {
   margin-top: 3.4375em;
   font-family: 'Comfortaa', cursive;
   border: 1px solid #e1e1e1;
   padding: 0 0 1.5625em 0;
   background: #fafafa;
   width: 100%;
-  height: auto;
-  max-height: 31.25em;
   overflow: auto;
+  max-height: 31.25em;
 }
+
 .panel-products--fields {
   background: #8b51f5;
   color: #fff;
@@ -318,6 +320,7 @@ input[type='file'] {
 .panel-products--fields span:first-child {
   flex-grow: 2;
 }
+
 .panel-products--list li {
   border-bottom: 1px solid #aeaeae;
   padding: 0.9375em 0.625em;
@@ -331,21 +334,11 @@ input[type='file'] {
 .panel-products--list li:hover {
   background: #fff;
 }
+
 .panel-products--list li {
   cursor: pointer;
 }
 
-.panel-users {
-  margin-top: 3.4375em;
-  font-family: 'Comfortaa', cursive;
-  border: 1px solid #e1e1e1;
-  padding: 0 0 1.5625em 0;
-  background: #fafafa;
-  width: 100%;
-  height: auto;
-  max-height: 31.25em;
-  overflow: auto;
-}
 .panel-users--fields {
   background: #8b51f5;
   color: #fff;
@@ -358,6 +351,7 @@ input[type='file'] {
 .panel-users--fields span:first-child {
   flex-grow: 2;
 }
+
 .panel-users--list li {
   border-bottom: 1px solid #aeaeae;
   padding: 0.9375em 0.625em;
@@ -371,9 +365,52 @@ input[type='file'] {
 .panel-users--list li:hover {
   background: #fff;
 }
+
 .panel-users--list li {
   cursor: pointer;
 }
+
+.panel-orders--fields {
+  background: #8b51f5;
+  color: #fff;
+  border-bottom: 1px solid #aeaeae;
+  padding: 0.625em;
+}
+.panel-orders--fields span {
+  flex: 1;
+}
+
+.panel-orders--fields span:last-child {
+  text-align: center;
+}
+
+.panel-orders--fields span:first-child {
+  flex-grow: 2;
+}
+
+.panel-orders--list li {
+  border-bottom: 1px solid #aeaeae;
+  padding: 0.9375em 0.625em;
+}
+.panel-orders--list li span {
+  flex: 1;
+}
+
+.panel-orders--list li span:last-child {
+ text-align: right;
+}
+
+.panel-orders--list li span:first-child {
+  flex-grow: 2;
+}
+.panel-orders--list li:hover {
+  background: #fff;
+}
+
+.panel-orders--list li {
+  cursor: pointer;
+}
+
 
 .progress-bar {
   position: relative;

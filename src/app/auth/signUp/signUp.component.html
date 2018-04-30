@@ -20,7 +20,7 @@
             <input type="password" (keyup)="matchPassword($event)" formControlName="confirm" id="confirm" class="user-input">
             <span *ngIf="confirmError">Password not matched.</span>
         </div>
-        <button [disabled]="signupForm.invalid" type="submit" class="btn btn-gr">Sign Up</button>
+        <button [ngClass]="{'opaque':disable}"  [disabled]="signupForm.invalid || disable" type="submit" class="btn btn-gr">Sign Up</button>
     </form>
 </div>
 <!-- End: Site Content Container -->

@@ -1,4 +1,19 @@
-<app-header *ngIf="!isAdmin"></app-header>
+<app-header (showOrders)="triggerOrder($event)" *ngIf="!isAdmin"></app-header>
 <router-outlet ></router-outlet>
+<!-- User Orders -->
+<div *ngIf="isLoggedIn" [ngClass]="{'hide':!showOrders}" class="user-orders">
+    <h2>My Orders</h2>
+    <span style="position:absolute;top:2%;left: 2%;color:red;font-size:15px;" (click)="closeOrder()"  class="fa fa-close"></span>
+    <div style="display:flex;flex-wrap: wrap;">
+        <div *ngFor="let order of orders" class="orders-list">
+            <li><b>Numbers of items purchased:</b>{{order?.cart?.length}}</li>
+            <li><b>Payment Id:</b>{{order?.payment_id}}</li>
+            <li><b>Date:</b>{{order?.created | date:'short'}}</li>
+            <li><b>Total:</b>${{order?.amount/100}}</li>
+        </div>
+        <p  style="text-align:center;padding:25px;" *ngIf="orders?.length == 0">No orders placed by you.</p>
+    </div>
+</div>
+<!-- End: Orders -->
 <app-l-footer *ngIf="!isAdmin && isFullFooter"></app-l-footer>
 <app-s-footer *ngIf="!isAdmin && !isFullFooter"></app-s-footer>

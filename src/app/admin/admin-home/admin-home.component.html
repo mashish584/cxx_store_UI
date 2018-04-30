@@ -6,12 +6,12 @@
         </div>
         <span class="count-item">{{counts?.products}}</span>
     </a>
-    <a href="" class="panel-tabs--item">
+    <a [routerLink]="['orders']" class="panel-tabs--item">
         <div class="item-container">
             <span class="icon fa fa-shopping-cart"></span>
             <span>Orders</span>
         </div>
-        <span class="count-item">0</span>
+        <span class="count-item">{{counts?.orders}}</span>
     </a>
     <a [routerLink]="['users']" class="panel-tabs--item">
         <div class="item-container">

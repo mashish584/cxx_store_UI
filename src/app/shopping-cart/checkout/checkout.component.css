@@ -1,6 +1,7 @@
 form.checkout {
-    max-width: 300px;
-    margin: 5rem auto;
+    position: relative;
+    max-width: 400px;
+    margin: 7rem auto;
     text-align: center;
     border: 2px solid #eee;
     border-radius: 8px;

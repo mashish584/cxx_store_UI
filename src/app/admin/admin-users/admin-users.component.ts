@@ -2,48 +2,45 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../services';
 import { UserService } from '../../core/services';
 
-
 @Component({
-    selector:'app-admin-users',
-    templateUrl:'./admin-users.component.html',
-    providers:[AdminService]
+  selector: 'app-admin-users',
+  templateUrl: './admin-users.component.html',
+  providers: [AdminService],
 })
+export class AdminUsersComponent implements OnInit {
+  private users;
 
-export class AdminUsersComponent implements OnInit{
+  constructor(
+    private userService: UserService,
+    private adminService: AdminService
+  ) {}
 
-    private users;
+  ngOnInit() {
+    this.userService.getAllUsers().subscribe(
+      (data: any) => {
+        let { users } = data.body;
+        this.users = users;
+      },
+      (error: any) => alert('Something went wrong')
+    );
+  }
 
-    constructor(private userService:UserService,private adminService:AdminService){}
+  private deleteUser(id) {
+    this.userService.deleteUser(id).subscribe(
+      (data: any) => {
+        let { message } = data.body;
+        this.users = this.users.filter(user => user._id != id);
 
-    ngOnInit(){
-        this.userService.getAllUsers()
-            .subscribe(
-                (data:any) => {
-                    let {users} = data.body;
-                    this.users = users;
-                },
-                (error:any) => alert("Something went wrong")
-            )
-    }
+        alert(message);
 
-    private deleteUser(id){
-        this.userService.deleteUser(id)
-            .subscribe(
-                (data:any) => {
-                    let {message} = data.body;
-                    this.users = this.users.filter(user => user._id != id);
-
-                    alert(message);
-
-                    // send notification to update counts
-                    this.adminService.updateCounts.next();
-                },
-                (error:any) => {
-                    console.log(error);
-                    let {message} = error.error;
-                    alert(message||"Something went wrong");
-                }
-            );
-    }
-
+        // send notification to update counts
+        this.adminService.updateCounts.next();
+      },
+      (error: any) => {
+        console.log(error);
+        let { message } = error.error;
+        alert(message || 'Something went wrong');
+      }
+    );
+  }
 }

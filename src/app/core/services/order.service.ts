@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
-export class AdminService {
+export class OrderService {
+  orderUpdate = new Subject<any>();
+
   constructor(private http: HttpClient) {}
 
-  updateCounts = new Subject<any>();
+  /*
+        >=> get all orders
+    */
 
-  getAllCounts() {
-    return this.http.get('http://localhost:8080/api/account/all/counts', {
+  getOrders() {
+    return this.http.get<any>('http://localhost:8080/api/orders', {
       observe: 'response',
     });
   }

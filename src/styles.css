@@ -89,7 +89,8 @@ hr {
 .single-product--content .review-list--item .user-review,
 .cart-header,
 .cart-content--item,
-.cart-content--item .actions {
+.cart-content--item .actions,
+.review-form--meta {
   display: flex;
   flex-wrap: wrap;
 }
@@ -230,6 +231,10 @@ hr {
   background: #396afc;
 }
 
+.btn.opaque {
+  opacity: 0.5;
+}
+
 .site-nav--primary {
   max-height: 3.4375em;
 }
@@ -299,6 +304,7 @@ hr {
   top: 100%;
   left: 0;
   right: 0;
+  height: 0;
   background: #fff;
   border: 1px solid #e6e6e6;
   transform: translateY(5px);
@@ -359,6 +365,7 @@ hr {
   transform: rotate(180deg);
 }
 .nav-list--item:hover .nav-list--dropdown {
+  height: auto;
   z-index: 999;
   transform: scale(1) translateY(0);
   opacity: 1;
@@ -663,7 +670,7 @@ hr {
 .cart-content--item h4 {
   font-family: 'Forum', cursive;
   margin-left: 2.5625em;
-  margin-bottom: 0.750em;
+  margin-bottom: 0.75em;
 }
 .cart-content--item .actions {
   justify-content: space-between;
@@ -697,4 +704,107 @@ hr {
 }
 .cart-footer span b {
   margin-left: 0.625em;
+}
+
+.review-form {
+  position: fixed;
+  width: 23.4375em;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  transform: translateX(375px);
+  transition: 100ms ease-in;
+  padding: 2.8125em 1.5625em;
+  z-index: 999;
+  background: #fff;
+  border-left: 1px solid #f2f2f2;
+}
+.review-form--meta {
+  margin-bottom: 1.5625em;
+  align-items: center;
+}
+.review-form--meta img {
+  width: 6.25em;
+  height: 6.25em;
+  margin-right: 0.625em;
+}
+.review-form--meta .details > .rating {
+  margin: 0.4375em 0;
+}
+.review-form.reveal {
+  transform: translateX(0);
+}
+.review-form input[type='radio'] {
+  display: none;
+}
+.review-form input,
+.review-form textarea {
+  margin: 10px auto;
+  width: 100%;
+  border: 1px solid #bfbfbf;
+  padding: 0.625em;
+  resize: none;
+}
+.review-form .form-rating {
+  direction: rtl;
+  width: 100px;
+  margin: 0.9375em;
+  margin-left: -10px;
+}
+.review-form .form-rating label:hover {
+  color: #ffdb0f;
+}
+.review-form .form-rating label:hover ~ label {
+  color: #ffdb0f;
+}
+.review-form .form-rating input[type='radio']:checked ~ label {
+  color: #ffdb0f;
+}
+.review-form .close-btn {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  padding: 0.625em;
+  background: #ff0000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.reveal-text {
+  margin: 10px;
+  display: block;
+  text-align: right;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.user-orders {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #f2f2f2;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.user-orders h2 {
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0.9375em;
+}
+.user-orders .orders-list {
+  margin: 10px 1%;
+  flex-basis: 23%;
+}
+.user-orders .orders-list li {
+  padding: 0.4375em;
+  height: auto;
+  background: #fff;
+}
+
+.user-orders .orders-list li>b{
+  display: block;
+}
+
+.hide{
+  display: none;
 }

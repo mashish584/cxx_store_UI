@@ -12,7 +12,7 @@
             <input type="password" (keyup)="matchPassword($event)" formControlName="confirm" id="confirm" class="user-input">
             <span *ngIf="confirmError">Password not matched.</span>
         </div>
-        <button [disabled]="resetForm.invalid" type="submit" class="btn btn-gr">Reset</button>
+        <button [ngClass]="{'opaque':disable}"  [disabled]="resetForm.invalid || disable" type="submit" class="btn btn-gr">Reset</button>
     </form>
 </div>
     <!-- End: Site Content Container -->

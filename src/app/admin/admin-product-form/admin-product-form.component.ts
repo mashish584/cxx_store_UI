@@ -1,7 +1,15 @@
-import { ActivatedRoute, Router, Params } from '@angular/router';
-import { Component, OnInit, ViewChild, ElementRef, trigger, Renderer2 } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  trigger,
+  Renderer2,
+} from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+
 import { ProductService } from '../../core/services';
 
 @Component({
@@ -9,92 +17,83 @@ import { ProductService } from '../../core/services';
   templateUrl: './admin-product-form.component.html',
 })
 export class AdminProductForm implements OnInit {
+  //storing the form type
+  private editMode: boolean = false;
+  private imageUploadProgress: boolean = false;
 
-    //storing the form type
-    private editMode: boolean = false;
-    private imageUploadProgress:boolean = false;
+  // product structure
+  private product = {
+    _id: null,
+    productTitle: null,
+    productQty: null,
+    productPrice: null,
+    productP_cat: '',
+    productC_cat: '',
+    productFeatures: null,
+    product_desc: null,
+  };
 
-    // product structure
-    private product = {
-        _id: null,
-        productTitle: null,
-        productQty: null,
-        productPrice: null,
-        productP_cat: '',
-        productC_cat: '',
-        productFeatures: null,
-        product_desc: null,
-    };
+  // storing imgSrc for EditMode
+  private imgSrc: String;
 
-    // storing imgSrc for EditMode
-    private imgSrc: String;
+  // store progress upload %
+  private percentageUpload: Number = 0;
 
-    // store progress upload %
-    private percentageUpload:Number = 0;
+  //creating productForm for storing formData
+  productForm: FormGroup;
 
-    //creating productForm for storing formData
-    productForm: FormGroup;
+  // storing template reference of #input
+  // and progress Bar
+  @ViewChild('upload') fileUpload: ElementRef;
+  @ViewChild('progress') progress: ElementRef;
 
+  // getting all categories and child category
+  categories: Category[];
+  c_Categories: any[] = [];
 
-    // storing template reference of #input
-    // and progress Bar
-    @ViewChild('upload') fileUpload: ElementRef;
-    @ViewChild('progress') progress: ElementRef;
-
-    // getting all categories and child category
-    categories: Category[];
-    c_Categories: any[] = [];
-
-    constructor(
-        private p_service: ProductService,
-        private router: Router,
-        private route: ActivatedRoute,
-        private renderer:Renderer2
-    ) {}
+  constructor(
+    private p_service: ProductService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit() {
-
     // check for editMode with route params
-    this.route.params
-        .subscribe((params:Params) => {
-            let {id} = params;
-            //get product if id is available
-            if(id){
-                // fetch product with id
-                this.p_service.getProduct(id)
-                    .subscribe(
-                        (data:any) => {
-                            // extract product details from response
-                            // and store that in product property
-                            let { product } = data.body;
-                            this.product = product;
-                            //set editMode to true
-                            this.editMode = true;
-                            //set image in form
-                            this.imgSrc = `http://localhost:8080/images/${product.productImg}`;
-                            // createForm
-                            this.createForm();
-                            // Load Child categories
-                            this.loadChild(product.productP_cat);
-                        },
-                        (error:any) => {
-                            alert("Something went wrong!!");
-                            this.router.navigateByUrl('admin');
-                        }
-                    );
-            }
-        });
+    this.route.params.subscribe((params: Params) => {
+      let { id } = params;
+      //get product if id is available
+      if (id) {
+        // fetch product with id
+        this.p_service.getProduct(id).subscribe(
+          (data: any) => {
+            // extract product details from response
+            // and store that in product property
+            let { product } = data.body;
+            this.product = product;
+            //set editMode to true
+            this.editMode = true;
+            //set image in form
+            this.imgSrc = `http://localhost:8080/images/${product.productImg}`;
+            // createForm
+            this.createForm();
+            // Load Child categories
+            this.loadChild(product.productP_cat);
+          },
+          (error: any) => {
+            alert('Something went wrong!!');
+            this.router.navigateByUrl('admin');
+          }
+        );
+      }
+    });
 
     // creating product form
     this.createForm();
 
     //store all categories
     this.categories = this.p_service.categories;
-
   }
-
-
-
 
   /*
     >=> Function to create product form structure
@@ -103,9 +102,8 @@ export class AdminProductForm implements OnInit {
   */
 
   private createForm() {
-
     let featureKeys = [new FormControl(null, Validators.required)],
-        featureValues = [new FormControl(null, Validators.required)];
+      featureValues = [new FormControl(null, Validators.required)];
 
     //Form update for edit mode only
     if (this.editMode) {
@@ -149,8 +147,6 @@ export class AdminProductForm implements OnInit {
     });
   }
 
-
-
   /*
     >=> Function to add Product
     >=> details in database and
@@ -182,7 +178,6 @@ export class AdminProductForm implements OnInit {
         // set value of child and parent category to ''
         this.productForm.get('product_p_cat').setValue('');
         this.productForm.get('product_c_cat').setValue('');
-
       },
       (error: any) => {
         let { message } = error.error;
@@ -191,58 +186,52 @@ export class AdminProductForm implements OnInit {
     );
   }
 
-
-
-
   /*
     >=> Function to update product details
     >=> in database without a image
     >=> using content type as JSON
   */
 
-  private updateProduct(){
-    let {value:data} = this.productForm;
+  private updateProduct() {
+    let { value: data } = this.productForm;
     // converting feature and types
     // into a JSON string
     const [types, values] = [data.product_f_types, data.product_f_values];
-    let features = this.getJSONString(types,values);
+    let features = this.getJSONString(types, values);
 
     // storing all data in to a
     // brand new object with updated values
     let formData = {
-        productTitle: data.product_name,
-        productQty: data.product_qty,
-        productPrice: data.product_price,
-        productP_cat: data.product_p_cat,
-        productC_cat: data.product_c_cat,
-        productFeatures: `{${features.join(',')}}`,
-        product_desc: data.product_desc
+      productTitle: data.product_name,
+      productQty: data.product_qty,
+      productPrice: data.product_price,
+      productP_cat: data.product_p_cat,
+      productC_cat: data.product_c_cat,
+      productFeatures: `{${features.join(',')}}`,
+      product_desc: data.product_desc,
     };
 
     // makeing a http request via ProductService
     // to update product details
-    this.p_service.updateProduct(formData,this.product._id).subscribe(
-        (data: any) => {
-          let { message } = data.body;
-          alert(message);
-          this.router.navigate(['admin/products']);
-        },
-        (error: any) => {
-          let { message } = error.error;
-          alert(message || 'Server is not responding.');
-        }
-      );
+    this.p_service.updateProduct(formData, this.product._id).subscribe(
+      (data: any) => {
+        let { message } = data.body;
+        alert(message);
+        this.router.navigate(['admin/products']);
+      },
+      (error: any) => {
+        let { message } = error.error;
+        alert(message || 'Server is not responding.');
+      }
+    );
   }
-
-
 
   /*
     >=> Function to update image
     >=> of given product
   */
 
-  private updateProductImage(){
-
+  private updateProductImage() {
     //set protgress status to true
     this.imageUploadProgress = true;
     // set upload file
@@ -256,51 +245,48 @@ export class AdminProductForm implements OnInit {
 
     // create form data object for image
     let data = new FormData();
-    data.append('productImage',files.item(0));
+    data.append('productImage', files.item(0));
 
-    this.p_service.updateProductImage(data,this.product._id)
-        .subscribe(
-          (event:any) => {
-            if (event.type === HttpEventType.UploadProgress) {
-              // This is an upload progress event. Compute and show the % done:
-              const percentDone = Math.round(100 * event.loaded / event.total);
-              this.percentageUpload = percentDone;
-              this.renderer.setStyle(this.progress.nativeElement,"width",`${percentDone}%`);
-
-            }
-            if (event instanceof HttpResponse) {
-               let {message,product}  = event.body;
-               this.imgSrc = `http://localhost:8080/images/${product.productImg}`;
-               //hide progress bar after 2seconds
-               // and set percentageUpload back to 0
-               setTimeout(() => {
-                this.imageUploadProgress = false;
-                this.percentageUpload = 0;
-               },1000);
-            }
-          },
-          (error: any) => {
-            let { message } = error.error;
-            alert(message || 'Server is not responding.');
-          }
-        );
+    this.p_service.updateProductImage(data, this.product._id).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          // This is an upload progress event. Compute and show the % done:
+          const percentDone = Math.round(100 * event.loaded / event.total);
+          this.percentageUpload = percentDone;
+          this.renderer.setStyle(
+            this.progress.nativeElement,
+            'width',
+            `${percentDone}%`
+          );
+        }
+        if (event instanceof HttpResponse) {
+          let { message, product } = event.body;
+          this.imgSrc = `http://localhost:8080/images/${product.productImg}`;
+          //hide progress bar after 2seconds
+          // and set percentageUpload back to 0
+          setTimeout(() => {
+            this.imageUploadProgress = false;
+            this.percentageUpload = 0;
+          }, 1000);
+        }
+      },
+      (error: any) => {
+        let { message } = error.error;
+        alert(message || 'Server is not responding.');
+      }
+    );
   }
-
-
-
-
 
   /*
     >=> Function is responsible to convert
     >=> two array into a common JSON string
   */
 
-  private getJSONString(types,values){
+  private getJSONString(types, values) {
     return types.map((value, index) => {
-        return `"${value.trim()}":"${values[index].trim() || ''}"`;
+      return `"${value.trim()}":"${values[index].trim() || ''}"`;
     });
   }
-
 
   /*
     >=> Function to add more feature
@@ -317,9 +303,6 @@ export class AdminProductForm implements OnInit {
     (<FormArray>this.productForm.get('product_f_values')).push(formControl2);
   }
 
-
-
-
   /*
     >=> Function to append all the values
     >=> coming from "add Product" form in
@@ -332,7 +315,7 @@ export class AdminProductForm implements OnInit {
     // converting feature and types
     // into a JSON string
     const [types, values] = [data.product_f_types, data.product_f_values];
-    let features = this.getJSONString(types,values);
+    let features = this.getJSONString(types, values);
     // append data in formData Object
     formData.append('productTitle', data.product_name);
     formData.append('productPrice', data.product_price);
@@ -350,22 +333,18 @@ export class AdminProductForm implements OnInit {
     >=> by id
   */
 
-  private removeProduct(){
-     this.p_service.removeProduct(this.product._id)
-         .subscribe(
-           (data:any) => {
-              let {message} = data.body;
-              alert(message);
-              this.router.navigateByUrl('/admin/products');
-           },
-           (error:any) => {
-              alert("Something went wrong.Product can't be removed");
-           }
-         )
+  private removeProduct() {
+    this.p_service.removeProduct(this.product._id).subscribe(
+      (data: any) => {
+        let { message } = data.body;
+        alert(message);
+        this.router.navigateByUrl('/admin/products');
+      },
+      (error: any) => {
+        alert("Something went wrong.Product can't be removed");
+      }
+    );
   }
-
-
-
 
   /*
    >=> Function to load child categories
@@ -380,6 +359,4 @@ export class AdminProductForm implements OnInit {
       }
     });
   }
-
-
 }

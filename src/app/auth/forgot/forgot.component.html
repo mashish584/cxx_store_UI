@@ -7,7 +7,7 @@
             <label for="email">Email</label>
             <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="user-input" required>
         </div>
-        <button [disabled]="!email" (click)="submit()" class="btn btn-gr">Sign Up</button>
+        <button [ngClass]="{'opaque':disable}"  [disabled]="!email || disable" (click)="submit()" class="btn btn-gr">Sign Up</button>
     </div>
 </div>
 <!-- End: Site Content Container -->

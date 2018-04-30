@@ -2,16 +2,15 @@
 <div class="site-content">
         <div class="site-content--featured">
             <div class="featured_content">
-                <h2>MACBOOK PRO</h2>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-                Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
-                <a href="" class="btn">See Product</a>
+                <h2>{{featured?.productTitle | slice:0:25}}...</h2>
+                <p>{{featured?.product_desc}}.</p>
+                <a *ngIf="featured" [routerLink]="['/products',featured._id]" class="btn">See Product</a>
             </div>
-            <img src="assets/images/image_4.png" alt="" class="featured_image">
+            <img src="http://localhost:8080/images/{{featured?.productImg}}" alt="" class="featured_image">
         </div>
         <div class="site-content--main">
             <div class="products-container">
-                <div *ngFor="let product of products;" class="product-container--item">
+                <div *ngFor="let product of products;let i = index;" class="product-container--item">
                     <div class="item-layer">
                         <span (click)="addToCart(product)" class="btn btn-bl"><i class="fa fa-shopping-cart"></i>Add To Cart</span>
                         <a [routerLink]="['products',product._id]" class="btn btn-gr"><i class="fa fa-eye"></i>See Product</a>
@@ -22,11 +21,9 @@
                     <div class="item-content">
                         <h3>{{product?.productTitle|slice:0:25}}...</h3>
                         <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
+                            <i *ngFor="let stars of fullStars[i];" class="fa fa-star"></i>
+                            <i *ngFor="let stars of halfStars[i];" class="fa fa-star-half"></i>
+                            <i *ngFor="let stars of noStars[i];" class="fa fa-star-o"></i>
                         </div>
                     </div>
                 </div>
@@ -35,21 +32,21 @@
             <div class="products-thumbnail">
                 <div class="products-thumbnail--card">
                     <div class="layer">
-                        <a href="" class="btn btn-wh">SEE NOW</a>
+                        <a [routerLink]="['products/category/Electronics']" class="btn btn-wh" style="color:#222;">ELECTRONICS</a>
                     </div>
-                    <img src="assets/images/image_2.jpg" alt="">
+                    <img src="https://unsplash.it/300/300" alt="">
                 </div>
                 <div class="products-thumbnail--card">
                     <div class="layer">
-                        <a href="" class="btn btn-wh">SEE NOW</a>
+                        <a [routerLink]="['products/category/Accessories']" class="btn btn-wh" style="color:#222;">ACCESSORIES</a>
                     </div>
-                    <img src="assets/images/image_1.jpg" alt="">
+                    <img src="https://unsplash.it/300/300" alt="">
                 </div>
                 <div class="products-thumbnail--card">
                     <div class="layer">
-                        <a href="" class="btn btn-wh">SEE NOW</a>
+                        <a [routerLink]="['products/category/Others']" class="btn btn-wh" style="color:#222;">OTHERS</a>
                     </div>
-                    <img src="assets/images/image_1.jpg" alt="">
+                    <img src="https://unsplash.it/300/300" alt="">
                 </div>
             </div>
         </div>

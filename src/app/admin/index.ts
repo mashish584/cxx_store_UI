@@ -5,6 +5,7 @@ import { AdminHome } from './admin-home/admin-home.component';
 import { AdminCategoryForm } from './admin-category-form/admin-category-form.component';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { AdminComponent } from './admin.component';
 
 export const adminComponents: any[] = [
@@ -15,7 +16,8 @@ export const adminComponents: any[] = [
   ChildCategory,
   AdminProductForm,
   AdminUsersComponent,
-  AdminProductsComponent
+  AdminProductsComponent,
+  AdminOrdersComponent
 ];
 
 export * from './admin.component';
@@ -24,4 +26,5 @@ export * from './admin-product-form/admin-product-form.component';
 export * from './admin-category-form/admin-category-form.component';
 export * from './admin-products/admin-products.component';
 export * from './admin-users/admin-users.component';
+export * from './admin-orders/admin-orders.component';
 export * from './guards';

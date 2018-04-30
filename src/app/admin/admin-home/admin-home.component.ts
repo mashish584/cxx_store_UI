@@ -1,39 +1,29 @@
-import { OnInit, OnDestroy } from '@angular/core';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { AdminService } from '../services';
 
 @Component({
-    selector:'admin-home',
-    templateUrl:'./admin-home.component.html',
+  selector: 'admin-home',
+  templateUrl: './admin-home.component.html',
 })
+export class AdminHome implements OnInit {
+  private counts: Object;
 
-export class AdminHome implements OnInit,OnDestroy{
+  constructor(private adminService: AdminService) {}
 
-    private counts:Object;
+  ngOnInit() {
+    this.getAllCounts();
+    this.adminService.updateCounts.subscribe(() => this.getAllCounts());
+  }
 
-    constructor(private adminService:AdminService){}
-
-    ngOnInit(){
-        this.getAllCounts();
-        this.adminService.updateCounts
-            .subscribe(() => this.getAllCounts());
-    }
-
-    private getAllCounts(){
-        this.adminService.getAllCounts()
-        .subscribe(
-            (response:any) => {
-                let data = response.body;
-                this.counts = data;
-            },
-            (error:any) => {
-                alert("Something went wrong");
-            }
-        );
-    }
-
-    ngOnDestroy(){
-
-    }
-
+  private getAllCounts() {
+    this.adminService.getAllCounts().subscribe(
+      (response: any) => {
+        let data = response.body;
+        this.counts = data;
+      },
+      (error: any) => {
+        alert('Something went wrong');
+      }
+    );
+  }
 }

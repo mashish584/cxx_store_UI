@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProductService,UserService } from '../../core/services';
-
+import { ProductService, UserService } from '../../core/services';
 
 @Component({
   selector: 'app-admin-products',
@@ -14,7 +13,7 @@ export class AdminProductsComponent implements OnInit {
     private productService: ProductService,
     private userService: UserService,
     private router: Router,
-    private route:ActivatedRoute
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -30,6 +29,6 @@ export class AdminProductsComponent implements OnInit {
   }
 
   private updateProduct(id) {
-    this.router.navigate(['../product/update', id],{relativeTo:this.route});
+    this.router.navigate(['../product/update', id], { relativeTo: this.route });
   }
 }

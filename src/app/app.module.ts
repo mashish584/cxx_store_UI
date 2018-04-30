@@ -13,6 +13,7 @@ import * as products from './products';
 import * as shoppingCart from './shopping-cart'
 
 import { APP_ROUTES } from './app.route';
+import { LoaderComponent } from './shopping-cart/loader/loader.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { APP_ROUTES } from './app.route';
     ...products.productComponents,
     ...core.coreComponents,
     ...shoppingCart.cartComponenets,
-    ...core.directives
+    ...core.directives,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
  <!-- Start: Site Content Container -->
  <div class="site-content">
     <form [formGroup]="signinForm" (ngSubmit)="signInUser()" class="user-form">
-        <div *ngIf="error" class="flash err">{{error}}<span close-flash class="fa fa-close"></span></div>
+        <div #flash *ngIf="error" class="flash err">{{error}}<span close-flash class="fa fa-close"></span></div>
         <div class="user-form--group">
             <label for="email">Email</label>
             <input type="email" formControlName="email" id="email" class="user-input">
@@ -10,7 +10,7 @@
             <label for="password">Password</label>
             <input type="password" formControlName="password" id="password" class="user-input">
         </div>
-        <button [disabled]="signinForm.invalid" type="submit" class="btn btn-gr">Log In</button>
+        <button [ngClass]="{'opaque':disable}" [disabled]="signinForm.invalid || disable" type="submit" class="btn btn-gr">Log In</button>
         <hr>
         <a [routerLink]="['/account/forgot']">Forgot your password ?</a>
     </form>

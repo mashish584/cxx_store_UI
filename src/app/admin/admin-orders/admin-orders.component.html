@@ -1,0 +1,22 @@
+<div class="panel-actions">
+    <a [routerLink]="['/admin']" class="btn btn-admin"><i class="fa fa-angle-left"></i></a>
+    <a [routerLink]="['/admin/product/add']" class="btn btn-admin"><i class="fa fa-plus"></i>Add New Product</a>
+</div>
+<div class="panel-orders panel-table">
+    <div class="panel-orders--fields">
+        <span>Payment_ID</span>
+        <span>Items</span>
+        <span>Total</span>
+        <span>User</span>
+        <span>Date</span>
+    </div>
+    <div class="panel-orders--list">
+        <li *ngFor="let order of orders">
+            <span>{{order?.payment_id}}</span>
+            <span>{{order?.cart.length}}</span>
+            <span>${{order?.amount}}</span>
+            <span>{{order?.user}}</span>
+            <span>{{order?.created | date:'shortDate' }}</span>
+        </li>
+    </div>
+</div>

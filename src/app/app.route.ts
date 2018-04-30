@@ -21,7 +21,8 @@ export const ROUTES:Routes = [
         { path:'product/update/:id',component:admin.AdminProductForm },
         { path:'category/add', component:admin.AdminCategoryForm },
         { path:'products', component:admin.AdminProductsComponent },
-        { path:'users', component: admin.AdminUsersComponent }
+        { path:'users', component: admin.AdminUsersComponent },
+        { path:'orders', component: admin.AdminOrdersComponent }
     ]},
     { path : 'products',children:[
         { path:'', component:HomepageComponent },
