@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
 import * as core from './core';
-import * as admin from './admin';
+
 import * as auth from './auth';
+import * as admin from './admin';
 import * as products from './products';
 import * as shoppingCart from './shopping-cart'
 
@@ -20,8 +21,8 @@ import { LoaderComponent } from './shopping-cart/loader/loader.component';
   declarations: [
     AppComponent,
     HomepageComponent,
-    ...auth.authComponents,
     ...admin.adminComponents,
+    ...auth.authComponents,
     ...products.productComponents,
     ...core.coreComponents,
     ...shoppingCart.cartComponenets,
@@ -30,8 +31,8 @@ import { LoaderComponent } from './shopping-cart/loader/loader.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     APP_ROUTES,
   ],
