@@ -6,7 +6,6 @@ import { AdminService } from './services';
     selector:'app-admin',
     templateUrl:'./admin.component.html',
     styleUrls : ['./admin.component.css'],
-    providers: [AdminService],
     encapsulation:ViewEncapsulation.None
 })
 
