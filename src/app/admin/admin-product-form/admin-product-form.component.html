@@ -60,11 +60,11 @@
             <span *ngIf="imageUploadProgress">{{percentageUpload}}% done</span>
         </div>
         <label for="upload" class="btn btn-file"><i class="fa fa-camera"></i>{{(editMode)?"Change Image":"Upload Image"}}</label>
-        <input (change) = "editMode ? updateProductImage(image) :false" type="file" name="upload" id="upload" #upload accept="image/*" >
+        <input  (change) = "editMode ? updateProductImage(image) :false" type="file" name="upload" id="upload" #upload accept="image/*"  [disabled]="disable">
     </div>
     <div class="form-group">
         <label for="description">Product Featured Description</label>
         <textarea formControlName="product_desc" id="description" maxlength="350"></textarea>
     </div>
-    <button [disabled]="productForm.invalid" class="btn btn-submit">{{(editMode)?'Update Product':'Add Product'}}</button>
+    <button [disabled]="productForm.invalid || disable" class="btn btn-submit">{{(editMode)?'Update Product':'Add Product'}}</button>
 </form>

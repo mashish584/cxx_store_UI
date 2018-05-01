@@ -84,11 +84,16 @@ export class SingleProduct implements OnInit,AfterViewInit {
             let reviewedItem = false;
             user.orders.map(order => {
               order.cart.map(item => {
-                item.items.map(item => (purchasedItem = item.id === this.product._id ? true:false));
+                if(!purchasedItem){
+                  item.items.map(item => (purchasedItem = item.id === this.product._id ? true:false));
+                }
               });
             });
             reviews.map(review => (reviewedItem = review.user._id === user._id ? true:false));
             this.userAllowToReview = purchasedItem && !reviewedItem;
+            console.log(user.orders);
+            console.log(purchasedItem);
+            console.log(reviewedItem);
           },
           (error:any) => {
             console.error(error);
@@ -117,6 +122,7 @@ export class SingleProduct implements OnInit,AfterViewInit {
         let { review } = data.body;
         review.user = this.user;
         this.product.reviews.push(review);
+        this.calculateSubmittedStars(review.rating);
         this.reviewForm = false;
         this.userAllowToReview = false;
         form.reset();
@@ -164,6 +170,25 @@ export class SingleProduct implements OnInit,AfterViewInit {
         this.r_noStars
       ] = this.utilsService.calculateReviewStars(review.rating,index);
     });
+
+  }
+
+  calculateSubmittedStars(rating){
+    this.r_fullStars.push([]);
+    this.r_halfStars.push([]);
+    this.r_noStars.push([]);
+    let noStars = 5 - rating;
+
+    for(let i=0;i < rating;i++){
+      this.r_fullStars[this.product.reviews.length-1].push(1);
+    }
+
+    for(let i=0;i < noStars;i++){
+      this.r_noStars[this.product.reviews.length-1].push(1);
+    }
+
+
+
   }
 
 }

@@ -2,14 +2,14 @@
     <a [routerLink]="['']" class="btn btn-admin btn-home"><i class="fa fa-home"></i>Home</a>
     <div class="admin-info">
         <img src="https://unsplash.it/200/200"  alt="">
-        <span class="admin-info--name">Ashish Mehra</span>
+        <span class="admin-info--name">{{user?.username | uppercase }}</span>
         <span class="admin-info--badge">Admin</span>
     </div>
 </div>
 <div class="admin-panel--content">
     <div class="panel-header">
         <a [routerLink]="['/admin']" class="btn btn-admin"><i class="fa fa-home"></i>Admin Panel</a>
-        <a href="" class="btn btn-danger">Log Out</a>
+        <a (click)="signOut()" class="btn btn-danger">Log Out</a>
     </div>
     <router-outlet></router-outlet>
 </div>

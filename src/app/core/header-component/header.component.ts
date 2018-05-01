@@ -99,11 +99,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.showOrders.next(true);
   }
 
+  // hide searchList onBlur
+  private hideSearchList(){
+    this.searchList = [];
+  }
+
   // search product
   private searchProduct($event){
-   this.searchLoader = true;
    this.searchList = [];
    let {value} = $event.target;
+   this.searchLoader = value.length > 0 ? true:false;
    if($event.timeStamp - Number(this.lastkeyPress) > 200 && value.length > 0){
      this.productService.searchProduct(value)
          .subscribe(

@@ -51,6 +51,9 @@ export class AdminProductForm implements OnInit {
   categories: Category[];
   c_Categories: any[] = [];
 
+  // form button state
+  disable:boolean = false;
+
   constructor(
     private p_service: ProductService,
     private router: Router,
@@ -169,11 +172,15 @@ export class AdminProductForm implements OnInit {
     //submission from the frontend Form
     const productData = this.getFormData(value);
 
+    // change disable state
+    this.disable = true;
+
     //use productService to save product
     this.p_service.storeProduct(productData).subscribe(
       (data: any) => {
         let { message } = data.body;
         alert(message);
+        this.disable = false;
         this.productForm.reset();
         // set value of child and parent category to ''
         this.productForm.get('product_p_cat').setValue('');
@@ -181,6 +188,7 @@ export class AdminProductForm implements OnInit {
       },
       (error: any) => {
         let { message } = error.error;
+        this.disable = false;
         alert(message || 'Server is not responding.');
       }
     );
@@ -211,16 +219,21 @@ export class AdminProductForm implements OnInit {
       product_desc: data.product_desc,
     };
 
+    // change disable state
+    this.disable = true;
+
     // makeing a http request via ProductService
     // to update product details
     this.p_service.updateProduct(formData, this.product._id).subscribe(
       (data: any) => {
         let { message } = data.body;
         alert(message);
+        this.disable = false;
         this.router.navigate(['admin/products']);
       },
       (error: any) => {
         let { message } = error.error;
+        this.disable = false;
         alert(message || 'Server is not responding.');
       }
     );
@@ -232,8 +245,8 @@ export class AdminProductForm implements OnInit {
   */
 
   private updateProductImage() {
+
     //set protgress status to true
-    this.imageUploadProgress = true;
     // set upload file
     let { files } = this.fileUpload.nativeElement;
 
@@ -243,6 +256,8 @@ export class AdminProductForm implements OnInit {
       return;
     }
 
+    this.imageUploadProgress = true;
+
     // create form data object for image
     let data = new FormData();
     data.append('productImage', files.item(0));
@@ -250,6 +265,7 @@ export class AdminProductForm implements OnInit {
     this.p_service.updateProductImage(data, this.product._id).subscribe(
       (event: any) => {
         if (event.type === HttpEventType.UploadProgress) {
+          this.disable = true;
           // This is an upload progress event. Compute and show the % done:
           const percentDone = Math.round(100 * event.loaded / event.total);
           this.percentageUpload = percentDone;
@@ -260,6 +276,7 @@ export class AdminProductForm implements OnInit {
           );
         }
         if (event instanceof HttpResponse) {
+          this.disable = false;
           let { message, product } = event.body;
           this.imgSrc = `http://localhost:8080/images/${product.productImg}`;
           //hide progress bar after 2seconds
@@ -272,6 +289,7 @@ export class AdminProductForm implements OnInit {
       },
       (error: any) => {
         let { message } = error.error;
+        this.disable = false;
         alert(message || 'Server is not responding.');
       }
     );
