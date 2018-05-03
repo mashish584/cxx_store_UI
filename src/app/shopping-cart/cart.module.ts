@@ -18,6 +18,4 @@ import { LoaderComponent } from './loader/loader.component';
     ]
 })
 
-export class CartModule{
-
-}
+export class CartModule{}

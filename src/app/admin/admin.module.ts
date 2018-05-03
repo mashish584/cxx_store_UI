@@ -24,6 +24,4 @@ import * as admin from './';
     ]
 })
 
-export class AdminModule{
-
-}
+export class AdminModul{}

@@ -16,7 +16,7 @@ export class SingleProduct implements OnInit,AfterViewInit {
 
   // boolean to check user is allowed
   // for review or not
-  userAllowToReview:boolean = false;
+  userAllowToReview:boolean = true;
 
   // store user details
   user;
@@ -76,24 +76,7 @@ export class SingleProduct implements OnInit,AfterViewInit {
     this.userService.getUserDetail()
         .subscribe(
           (data:any) => {
-            let {user} = data.body;
-            this.user = user;
-            let {cart} = user.orders;
-            let {reviews} = this.product;
-            let purchasedItem = false;
-            let reviewedItem = false;
-            user.orders.map(order => {
-              order.cart.map(item => {
-                if(!purchasedItem){
-                  item.items.map(item => (purchasedItem = item.id === this.product._id ? true:false));
-                }
-              });
-            });
-            reviews.map(review => (reviewedItem = review.user._id === user._id ? true:false));
-            this.userAllowToReview = purchasedItem && !reviewedItem;
-            console.log(user.orders);
-            console.log(purchasedItem);
-            console.log(reviewedItem);
+            console.log(data);
           },
           (error:any) => {
             console.error(error);
@@ -186,9 +169,6 @@ export class SingleProduct implements OnInit,AfterViewInit {
     for(let i=0;i < noStars;i++){
       this.r_noStars[this.product.reviews.length-1].push(1);
     }
-
-
-
   }
 
 }

@@ -17,6 +17,4 @@ import { AUTH_ROUTE } from './auth.route';
     ]
 })
 
-export class AuthModule{
-
-}
+export class AuthModule{}
