@@ -8,11 +8,11 @@ import { UserService } from '../../core/services';
   providers: [AdminService],
 })
 export class AdminUsersComponent implements OnInit {
-  private users;
+  public users;
 
   constructor(
-    private userService: UserService,
-    private adminService: AdminService
+    public userService: UserService,
+    public adminService: AdminService
   ) {}
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class AdminUsersComponent implements OnInit {
     );
   }
 
-  private deleteUser(id) {
+  public deleteUser(id) {
     this.userService.deleteUser(id).subscribe(
       (data: any) => {
         let { message } = data.body;

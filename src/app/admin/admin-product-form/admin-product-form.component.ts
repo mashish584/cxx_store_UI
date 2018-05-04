@@ -18,11 +18,11 @@ import { ProductService } from '../../core/services';
 })
 export class AdminProductForm implements OnInit {
   //storing the form type
-  private editMode: boolean = false;
-  private imageUploadProgress: boolean = false;
+  public editMode: boolean = false;
+  public imageUploadProgress: boolean = false;
 
   // product structure
-  private product = {
+  public product = {
     _id: null,
     productTitle: null,
     productQty: null,
@@ -34,10 +34,10 @@ export class AdminProductForm implements OnInit {
   };
 
   // storing imgSrc for EditMode
-  private imgSrc: String;
+  public imgSrc: String;
 
   // store progress upload %
-  private percentageUpload: Number = 0;
+  public percentageUpload: Number = 0;
 
   //creating productForm for storing formData
   productForm: FormGroup;
@@ -55,10 +55,10 @@ export class AdminProductForm implements OnInit {
   disable:boolean = false;
 
   constructor(
-    private p_service: ProductService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private renderer: Renderer2
+    public p_service: ProductService,
+    public router: Router,
+    public route: ActivatedRoute,
+    public renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -104,7 +104,7 @@ export class AdminProductForm implements OnInit {
     >=> type of form mode.
   */
 
-  private createForm() {
+  public createForm() {
     let featureKeys = [new FormControl(null, Validators.required)],
       featureValues = [new FormControl(null, Validators.required)];
 
@@ -157,7 +157,7 @@ export class AdminProductForm implements OnInit {
     >=> with a content type as FormData
   */
 
-  private addProduct() {
+  public addProduct() {
     // set upload file
     let { files } = this.fileUpload.nativeElement;
     // if file length is 0 @return
@@ -200,7 +200,7 @@ export class AdminProductForm implements OnInit {
     >=> using content type as JSON
   */
 
-  private updateProduct() {
+  public updateProduct() {
     let { value: data } = this.productForm;
     // converting feature and types
     // into a JSON string
@@ -244,7 +244,7 @@ export class AdminProductForm implements OnInit {
     >=> of given product
   */
 
-  private updateProductImage() {
+  public updateProductImage() {
 
     //set protgress status to true
     // set upload file
@@ -300,7 +300,7 @@ export class AdminProductForm implements OnInit {
     >=> two array into a common JSON string
   */
 
-  private getJSONString(types, values) {
+  public getJSONString(types, values) {
     return types.map((value, index) => {
       return `"${value.trim()}":"${values[index].trim() || ''}"`;
     });
@@ -313,7 +313,7 @@ export class AdminProductForm implements OnInit {
     >=> formArray
   */
 
-  private addFeatures() {
+  public addFeatures() {
     const formControl1 = new FormControl(null, [Validators.required]);
     const formControl2 = new FormControl(null, [Validators.required]);
     //add Form control in both types and features
@@ -328,7 +328,7 @@ export class AdminProductForm implements OnInit {
     >=> Why ? Because we're uploading image on server
   */
 
-  private getFormData(data) {
+  public getFormData(data) {
     const formData = new FormData();
     // converting feature and types
     // into a JSON string
@@ -351,7 +351,7 @@ export class AdminProductForm implements OnInit {
     >=> by id
   */
 
-  private removeProduct() {
+  public removeProduct() {
     this.p_service.removeProduct(this.product._id).subscribe(
       (data: any) => {
         let { message } = data.body;
@@ -369,7 +369,7 @@ export class AdminProductForm implements OnInit {
    >=> according to selected parent
   */
 
-  private loadChild(value) {
+  public loadChild(value) {
     let parent = value;
     this.categories.map(category => {
       if (category.name === parent && category.childs.length > 0) {

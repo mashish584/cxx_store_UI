@@ -10,22 +10,22 @@ import { UserService } from '../../core/services';
 })
 export class ResetComponent implements OnInit {
   //store reset form
-  private resetForm: FormGroup;
+  public resetForm: FormGroup;
 
   // storing and tracking error and
   // success messages
-  private error: any;
-  private confirmError: boolean = false;
-  private success: any;
-  private disable: boolean = false;
+  public error: any;
+  public confirmError: boolean = false;
+  public success: any;
+  public disable: boolean = false;
 
   //store token here
-  private token: String;
+  public token: String;
 
   constructor(
-    private userService: UserService,
-    private router: Router,
-    private route: ActivatedRoute
+    public userService: UserService,
+    public router: Router,
+    public route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -56,7 +56,7 @@ export class ResetComponent implements OnInit {
   // matchPassword on each KeyUp event on "confirm"
   // password to check is password is equal.If yes
   // keep confirmError as false else as true
-  private matchPassword($event) {
+  public matchPassword($event) {
     let { value } = $event.target;
     let password = this.resetForm.get('password').value;
     this.confirmError = value != password ? true : false;
@@ -64,7 +64,7 @@ export class ResetComponent implements OnInit {
 
   // change the password stored in server via userService
   // if clientSide got no error in form
-  private resetPassword() {
+  public resetPassword() {
     let { value: data } = this.resetForm;
     //reset error and success
     this.error = this.success = '';

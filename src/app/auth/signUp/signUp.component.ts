@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
   confirmError: boolean = false;
   disable: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {
     // creating signup form structure
@@ -41,7 +41,7 @@ export class SignUpComponent implements OnInit {
   // matchPassword on each KeyUp event on "confirm"
   // password to check is password is equal.If yes
   // keep confirmError as false else as true
-  private matchPassword($event) {
+  public matchPassword($event) {
     let { value } = $event.target;
     let password = this.signupForm.get('password').value;
     this.confirmError = value != password ? true : false;
@@ -50,7 +50,7 @@ export class SignUpComponent implements OnInit {
   // send user details to server for
   // registration.If valid we will get
   // success message else erro message
-  private registerUser() {
+  public registerUser() {
     this.disable = true;
     let data = this.signupForm.value;
     // reset error and success

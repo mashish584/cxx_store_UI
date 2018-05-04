@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
 export class OrderService {
   orderUpdate = new Subject<any>();
 
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   /*
         >=> get all orders

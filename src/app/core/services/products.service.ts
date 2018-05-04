@@ -17,7 +17,7 @@ export class ProductService {
   c_categoryUpdate = new Subject<Category>();
   sub_menuUpdate = new Subject<any>();
 
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   /*
       >=> UGet All Products

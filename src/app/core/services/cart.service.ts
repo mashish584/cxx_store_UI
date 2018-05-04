@@ -3,9 +3,9 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class CartService {
-  private shoppingCart: any[] = [];
-  private count: Number = 0;
-  private cartTotal: Number = 0;
+  public shoppingCart: any[] = [];
+  public count: Number = 0;
+  public cartTotal: Number = 0;
 
   cartUpdate: Subject<any> = new Subject<any>();
 
@@ -58,7 +58,7 @@ export class CartService {
         >=> Calculating number of products we have in a cart
     */
 
-  private setCount() {
+  public setCount() {
     this.count = this.shoppingCart.length;
   }
 
@@ -66,7 +66,7 @@ export class CartService {
         >=> Calculating cart total by using reduce()
     */
 
-  private setCartTotal() {
+  public setCartTotal() {
     let cartItems = this.shoppingCart;
     this.cartTotal = cartItems.reduce(
       (sum, item) => sum + item.price * item.qty,

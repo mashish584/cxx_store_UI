@@ -28,11 +28,11 @@ export class AppComponent implements OnInit {
   showOrders: boolean = false;
 
   constructor(
-    private router: Router,
-    private productService: ProductService,
-    private orderService: OrderService,
-    private authService: AuthService,
-    private userService: UserService
+    public router: Router,
+    public productService: ProductService,
+    public orderService: OrderService,
+    public authService: AuthService,
+    public userService: UserService
   ) {
 
     /*

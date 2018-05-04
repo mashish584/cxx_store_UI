@@ -7,13 +7,13 @@ import { ProductService, UserService } from '../../core/services';
   templateUrl: './admin-products.component.html',
 })
 export class AdminProductsComponent implements OnInit {
-  private products;
+  public products;
 
   constructor(
-    private productService: ProductService,
-    private userService: UserService,
-    private router: Router,
-    private route: ActivatedRoute
+    public productService: ProductService,
+    public userService: UserService,
+    public router: Router,
+    public route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class AdminProductsComponent implements OnInit {
     );
   }
 
-  private updateProduct(id) {
+  public updateProduct(id) {
     this.router.navigate(['../product/update', id], { relativeTo: this.route });
   }
 }

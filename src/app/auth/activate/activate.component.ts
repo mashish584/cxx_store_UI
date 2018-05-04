@@ -9,9 +9,9 @@ import { UserService } from '../../core/services';
 })
 export class ActivateComponent implements OnInit {
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private userService: UserService
+    public router: Router,
+    public route: ActivatedRoute,
+    public userService: UserService
   ) {}
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class ActivateComponent implements OnInit {
   //send the token via a userService to server
   //and if it is valid activate user account
   //else show erorr message
-  private doActivate(token) {
+  public doActivate(token) {
     this.userService.activateAccount(token).subscribe(
       (data: any) => {
         let { message } = data.body;

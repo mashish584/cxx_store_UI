@@ -12,7 +12,7 @@ import { AuthService } from '../../core/services';
 
 @Injectable()
 export class UnAuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, public router: Router) {}
 
   // if user is loggedIn redirect them back to homepage
   canActivate(

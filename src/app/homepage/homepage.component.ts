@@ -16,9 +16,9 @@ export class HomepageComponent implements OnInit {
   noStars = [];
 
   constructor(
-    private productService: ProductService,
-    private cartService: CartService,
-    private utilService: UtilsService
+    public productService: ProductService,
+    public cartService: CartService,
+    public utilService: UtilsService
   ) {}
 
   ngOnInit() {

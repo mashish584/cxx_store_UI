@@ -13,7 +13,7 @@ export class SignInComponent implements OnInit {
   error: any;
   disable: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, public router: Router) {}
 
   ngOnInit() {
     //creating signInform with formControls
@@ -26,7 +26,7 @@ export class SignInComponent implements OnInit {
   // send email & password to server for
   // authentication if valid we will get
   // token and redirect user to homepage
-  private signInUser() {
+  public signInUser() {
     this.disable = true;
     // reset error
     this.error = '';

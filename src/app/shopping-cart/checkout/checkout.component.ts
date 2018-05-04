@@ -27,22 +27,22 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   // to mount our stripe elements
   @ViewChild('cardInfo') cardInfo: ElementRef;
 
-  private card: any;
-  private cardHandler = this.onChange.bind(this);
-  private error: String;
-  private disable: boolean = false;
+  public card: any;
+  public cardHandler = this.onChange.bind(this);
+  public error: String;
+  public disable: boolean = false;
 
   // current user email & cart details
-  private email: String;
-  private cart: Object;
+  public email: String;
+  public cart: Object;
 
   constructor(
-    private cd: ChangeDetectorRef,
-    private router: Router,
-    private orderService: OrderService,
-    private userService: UserService,
-    private cartService: CartService,
-    private productService: ProductService
+    public cd: ChangeDetectorRef,
+    public router: Router,
+    public orderService: OrderService,
+    public userService: UserService,
+    public cartService: CartService,
+    public productService: ProductService
   ) {
     this.cart = this.cartService.getCart();
   }

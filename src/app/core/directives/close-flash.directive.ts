@@ -10,7 +10,7 @@ import {
   selector: '[close-flash]',
 })
 export class CloseFlashDirective {
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(public elementRef: ElementRef, public renderer: Renderer2) {}
 
   @HostListener('click')
   hideParent() {

@@ -9,18 +9,18 @@ import { ProductService } from '../../../core/services';
 export class ChildCategory implements OnInit, OnDestroy {
   // Binding input's here in these three variables
   // with ngModel
-  private name: String;
-  private type: String = 'child';
-  private parent: String = '';
+  public name: String;
+  public type: String = 'child';
+  public parent: String = '';
 
   //Storing all categories from services
   //and child categories also for list
-  private categories: Category[];
-  private c_categories: Category[];
+  public categories: Category[];
+  public c_categories: Category[];
 
-  private subscription: Subscription;
+  public subscription: Subscription;
 
-  constructor(private productService: ProductService) {
+  constructor(public productService: ProductService) {
     // Subscribing child category update notification
     // for updating the current state of categories
     // by pushing new data
@@ -57,7 +57,7 @@ export class ChildCategory implements OnInit, OnDestroy {
 
   // Making an call to ProductService StoreProductCategory methods
   // for storing the data user requested
-  private addCategory() {
+  public addCategory() {
     //creating a brand new category object
     let data: Category = {
       name: this.name,

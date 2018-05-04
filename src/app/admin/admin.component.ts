@@ -12,9 +12,9 @@ import { AdminService } from './services';
 
 export class AdminComponent implements OnInit{
 
-    private user;
+    public user;
 
-    constructor(private adminService:AdminService){}
+    constructor(public adminService:AdminService){}
 
     ngOnInit(){
         this.adminService.getUserDetail()
@@ -32,7 +32,7 @@ export class AdminComponent implements OnInit{
   // remove user token and updating
   // navigation subject notification
   // for navigation items
-  private signOut() {
+  public signOut() {
     this.adminService.logOut();
   }
 

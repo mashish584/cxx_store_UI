@@ -8,10 +8,10 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AdminService {
   constructor(
-    private http: HttpClient,
-    private userService: UserService,
-    private authService: AuthService,
-    private router: Router
+    public http: HttpClient,
+    public userService: UserService,
+    public authService: AuthService,
+    public router: Router
   ) {}
 
   updateCounts = new Subject<any>();

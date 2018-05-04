@@ -15,9 +15,9 @@ export class AuthService {
   NavSubject = new Subject<any>();
 
   // storing JwtHelperService instance
-  private jwtHelper;
+  public jwtHelper;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(public http: HttpClient, public router: Router) {
     this.jwtHelper = new JwtHelperService();
   }
 

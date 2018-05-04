@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './admin-orders.component.html',
 })
 export class AdminOrdersComponent implements OnInit {
-  private orders;
+  public orders;
 
-  constructor(private orderService: OrderService) {}
+  constructor(public orderService: OrderService) {}
 
   ngOnInit() {
     this.orderService.getOrders().subscribe(

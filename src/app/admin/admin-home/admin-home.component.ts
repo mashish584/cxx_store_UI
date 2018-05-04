@@ -6,16 +6,16 @@ import { AdminService } from '../services';
   templateUrl: './admin-home.component.html',
 })
 export class AdminHome implements OnInit {
-  private counts: Object;
+  public counts: Object;
 
-  constructor(private adminService: AdminService) {}
+  constructor(public adminService: AdminService) {}
 
   ngOnInit() {
     this.getAllCounts();
     this.adminService.updateCounts.subscribe(() => this.getAllCounts());
   }
 
-  private getAllCounts() {
+  public getAllCounts() {
     this.adminService.getAllCounts().subscribe(
       (response: any) => {
         let data = response.body;

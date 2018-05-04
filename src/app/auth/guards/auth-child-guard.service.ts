@@ -11,7 +11,7 @@ import { AuthService } from '../../core/services';
 
 @Injectable()
 export class ChildAuthGuard implements CanActivateChild {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, public router: Router) {}
 
   // if user is not loggedIn redirect them back to signIn page
   canActivateChild(

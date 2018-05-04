@@ -18,11 +18,11 @@ export class ProductList implements OnInit {
   noStars = [];
 
   constructor(
-    private productService: ProductService,
-    private cartService: CartService,
-    private utilService: UtilsService,
-    private route: ActivatedRoute,
-    private router: Router
+    public productService: ProductService,
+    public cartService: CartService,
+    public utilService: UtilsService,
+    public route: ActivatedRoute,
+    public router: Router
   ) {}
 
   ngOnInit() {

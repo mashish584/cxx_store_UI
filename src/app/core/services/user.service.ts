@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   /*
          >=> Get All users details

@@ -31,12 +31,12 @@ export class SingleProduct implements OnInit,AfterViewInit {
   r_noStars = [];
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private productService: ProductService,
-    private cartService:CartService,
-    private userService:UserService,
-    private utilsService:UtilsService
+    public router: Router,
+    public route: ActivatedRoute,
+    public productService: ProductService,
+    public cartService:CartService,
+    public userService:UserService,
+    public utilsService:UtilsService
   ) { }
 
   ngOnInit() {

@@ -14,18 +14,18 @@ import { UserService } from '../../core/services';
 export class ForgotComponent {
   // storing and tracking error
   // and success messages
-  private error: any;
-  private success: any;
-  private disable: boolean = false;
+  public error: any;
+  public success: any;
+  public disable: boolean = false;
 
   // binding email property with email input
-  private email: String = '';
+  public email: String = '';
 
-  constructor(private userService: UserService) {}
+  constructor(public userService: UserService) {}
 
   // sending resettoken to user if emai exist
   // via a call to server with userService
-  private submit() {
+  public submit() {
     this.disable = true;
     this.error = this.success = '';
     this.userService.sendResetToken(this.email).subscribe(

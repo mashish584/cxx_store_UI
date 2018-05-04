@@ -14,7 +14,7 @@ import { AuthService } from '../../core/services';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, public router: Router) {}
 
   //not allowing user to access this page is he is not admin
   canActivate(

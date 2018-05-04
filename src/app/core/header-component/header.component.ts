@@ -39,10 +39,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(
-    private authService: AuthService,
-    private productService: ProductService,
-    private cartService: CartService,
-    private route: ActivatedRoute
+    public authService: AuthService,
+    public productService: ProductService,
+    public cartService: CartService,
+    public route: ActivatedRoute
   ) {
     this.countCart = this.cartService.getCart().count;
     this.cartService.cartUpdate.subscribe(
@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // Updating LoggedIn and isAdmin property
   // by subscribing to notification of navigation
   // subject
-  private updateNav() {
+  public updateNav() {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.subscription = this.authService
       .isAdmin()
@@ -88,24 +88,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // remove user token and updating
   // navigation subject notification
   // for navigation items
-  private signOut() {
+  public signOut() {
     localStorage.removeItem('authUser');
     this.authService.NavSubject.next();
     this.authService.loggedInSubject.next();
   }
 
   // @Output to pass value to parent component
-  private triggerShowOrders() {
+  public triggerShowOrders() {
     this.showOrders.next(true);
   }
 
   // hide searchList onBlur
-  private hideSearchList(){
+  public hideSearchList(){
     this.searchList = [];
   }
 
   // search product
-  private searchProduct($event){
+  public searchProduct($event){
    this.searchList = [];
    let {value} = $event.target;
    this.searchLoader = value.length > 0 ? true:false;

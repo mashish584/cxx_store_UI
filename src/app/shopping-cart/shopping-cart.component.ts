@@ -10,13 +10,13 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  private cart;
+  public cart;
 
   constructor(
-    private cartService: CartService,
-    private productService: ProductService,
-    private router: Router,
-    private route: ActivatedRoute
+    public cartService: CartService,
+    public productService: ProductService,
+    public router: Router,
+    public route: ActivatedRoute
   ) {}
 
   ngOnInit() {
