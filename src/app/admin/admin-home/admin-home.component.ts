@@ -6,7 +6,7 @@ import { AdminService } from '../services';
   templateUrl: './admin-home.component.html',
 })
 export class AdminHome implements OnInit {
-  public counts: Object;
+  public counts;
 
   constructor(public adminService: AdminService) {}
 

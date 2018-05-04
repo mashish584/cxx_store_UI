@@ -43,10 +43,10 @@
         </div>
         <div class="list-group">
             <div formArrayName="product_f_types" class="input-container">
-                <input type="text" *ngFor="let types of productForm.get('product_f_types').controls;let i=index;" [formControlName]="i" placeholder="Type">
+                <input type="text" *ngFor="let types of featureTypes.controls;let i=index;" [formControlName]="i" placeholder="Type">
             </div>
             <div formArrayName="product_f_values" class="input-container">
-                <input type="text" *ngFor="let values of productForm.get('product_f_values').controls;let i=index;" [formControlName]="i" placeholder="Feature">
+                <input type="text" *ngFor="let values of featureValues.controls;let i=index;" [formControlName]="i" placeholder="Feature">
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
             <span *ngIf="imageUploadProgress">{{percentageUpload}}% done</span>
         </div>
         <label for="upload" class="btn btn-file"><i class="fa fa-camera"></i>{{(editMode)?"Change Image":"Upload Image"}}</label>
-        <input  (change) = "editMode ? updateProductImage(image) :false" type="file" name="upload" id="upload" #upload accept="image/*"  [disabled]="disable">
+        <input  (change) = "editMode ? updateProductImage() :false" type="file" name="upload" id="upload" #upload accept="image/*"  [disabled]="disable">
     </div>
     <div class="form-group">
         <label for="description">Product Featured Description</label>

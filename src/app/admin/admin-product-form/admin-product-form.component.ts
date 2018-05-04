@@ -317,8 +317,18 @@ export class AdminProductForm implements OnInit {
     const formControl1 = new FormControl(null, [Validators.required]);
     const formControl2 = new FormControl(null, [Validators.required]);
     //add Form control in both types and features
-    (<FormArray>this.productForm.get('product_f_types')).push(formControl1);
-    (<FormArray>this.productForm.get('product_f_values')).push(formControl2);
+    const type = this.productForm.get('product_f_types') as FormArray;
+    const feature = this.productForm.get('product_f_values') as FormArray;
+    type.push(formControl1);
+    feature.push(formControl2);
+  }
+
+  get featureTypes(){
+    return <FormArray>this.productForm.get('product_f_types');
+  }
+
+  get featureValues(){
+    return <FormArray> this.productForm.get('product_f_values');
   }
 
   /*
