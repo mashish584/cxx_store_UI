@@ -30,7 +30,7 @@ import { LoaderComponent } from './shopping-cart/loader/loader.component';
     LoaderComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId:'my-universal-app'}),
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
