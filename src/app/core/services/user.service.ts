@@ -47,7 +47,7 @@ export class UserService {
     */
   sendResetToken(email): Observable<any> {
     //setting headers with for domain value
-    let headers = new HttpHeaders().append('site_url', 'ecommerce-rest.herokuapp.com');
+    let headers = new HttpHeaders().append('site_url', 'localhost:4200');
     return this.http.put(
       `http://localhost:8080/api/account/forgot/${email}`,
       {},

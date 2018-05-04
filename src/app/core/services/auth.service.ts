@@ -27,7 +27,7 @@ export class AuthService {
 
   signup(data) {
     //setting headers with for domain value
-    let headers = new HttpHeaders().append('site_url', 'ecommerce-rest.herokuapp.com');
+    let headers = new HttpHeaders().append('site_url', 'localhost:4200');
     return this.http.post('http://localhost:8080/api/users/signup', data, {
       headers: headers,
       observe: 'response',
