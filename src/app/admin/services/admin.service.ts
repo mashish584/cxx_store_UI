@@ -21,7 +21,7 @@ export class AdminService {
   }
 
   getAllCounts() {
-    return this.http.get('http://localhost:8080/api/account/all/counts', {
+    return this.http.get('api/account/all/counts', {
       observe: 'response',
     });
   }

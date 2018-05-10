@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class UserService {
@@ -10,8 +10,8 @@ export class UserService {
          >=> Get All users details
     */
   getAllUsers(): Observable<any> {
-    return this.http.get('http://localhost:8080/api/users', {
-      observe: 'response',
+    return this.http.get("api/users", {
+      observe: "response"
     });
   }
 
@@ -19,13 +19,13 @@ export class UserService {
          >=> Get loggedIn user details
     */
   getUserDetail() {
-    const token = localStorage.getItem('authUser');
+    const token = localStorage.getItem("authUser");
     //setting Authorization header with token
-    let headers = new HttpHeaders().append('Authorization', token);
+    let headers = new HttpHeaders().append("Authorization", token);
     // >-> send request on server for token verification
-    return this.http.get(`http://localhost:8080/api/users/details`, {
+    return this.http.get(`api/users/details`, {
       headers: headers,
-      observe: 'response',
+      observe: "response"
     });
   }
 
@@ -34,10 +34,10 @@ export class UserService {
     */
   activateAccount(token): Observable<any> {
     return this.http.put(
-      `http://localhost:8080/api/account/activate/${token}`,
+      `api/account/activate/${token}`,
       {},
       {
-        observe: 'response',
+        observe: "response"
       }
     );
   }
@@ -47,13 +47,13 @@ export class UserService {
     */
   sendResetToken(email): Observable<any> {
     //setting headers with for domain value
-    let headers = new HttpHeaders().append('site_url', 'localhost:4200');
+    let headers = new HttpHeaders().append("site_url", "localhost:4200");
     return this.http.put(
-      `http://localhost:8080/api/account/forgot/${email}`,
+      `api/account/forgot/${email}`,
       {},
       {
         headers: headers,
-        observe: 'response',
+        observe: "response"
       }
     );
   }
@@ -64,7 +64,7 @@ export class UserService {
          >=> else {access:false}
     */
   accessReset(token): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/account/reset/${token}`);
+    return this.http.get(`api/account/reset/${token}`);
   }
 
   /*
@@ -73,23 +73,19 @@ export class UserService {
         >=> and will set user account status to 1
     */
   resetPassword(data, token): Observable<any> {
-    return this.http.put(
-      `http://localhost:8080/api/account/reset/${token}`,
-      data,
-      { observe: 'response' }
-    );
+    return this.http.put(`api/account/reset/${token}`, data, { observe: "response" });
   }
 
   /*
         Delete user if user != current loggedIn user
     */
   deleteUser(id) {
-    const token = localStorage.getItem('authUser');
+    const token = localStorage.getItem("authUser");
     //setting Authorization header with token
-    let headers = new HttpHeaders().append('Authorization', token);
-    return this.http.delete(`http://localhost:8080/api/users/${id}/delete`, {
+    let headers = new HttpHeaders().append("Authorization", token);
+    return this.http.delete(`api/users/${id}/delete`, {
       headers: headers,
-      observe: 'response',
+      observe: "response"
     });
   }
 }
