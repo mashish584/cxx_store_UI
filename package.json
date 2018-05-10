@@ -5,8 +5,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
-    "build:ssr": "ng build --prod --preserve-symlinks && ng build --prod --preserve-symlinks --app 1 --output-hashing=none",
+    "build": "ng build --prod --preserve-symlinks",
+    "build:ssr":
+      "ng build --prod --preserve-symlinks && ng build --prod --preserve-symlinks --app 1 --output-hashing=none",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
