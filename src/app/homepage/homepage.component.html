@@ -6,7 +6,7 @@
             <p>{{featured?.product_desc}}.</p>
             <a *ngIf="featured" [routerLink]="['/products',featured._id]" class="btn">See Product</a>
         </div>
-        <img src="images/{{featured?.productImg}}" alt="" class="featured_image">
+        <img src="{{featured?.productImg}}" alt="" class="featured_image">
     </div>
     <div class="site-content--main">
         <div class="products-container">
@@ -18,7 +18,7 @@
                         <i class="fa fa-eye"></i>See Product</a>
                 </div>
                 <div class="item-image">
-                    <img src='images/{{product.productImg}}' alt="">
+                    <img src='{{product.productImg}}' alt="">
                 </div>
                 <div class="item-content">
                     <h3>{{product?.productTitle|slice:0:25}}...</h3>
