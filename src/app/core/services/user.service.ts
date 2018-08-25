@@ -10,7 +10,7 @@ export class UserService {
          >=> Get All users details
     */
   getAllUsers(): Observable<any> {
-    return this.http.get('http://localhost:8080/api/users', {
+    return this.http.get('api/users', {
       observe: 'response',
     });
   }
@@ -23,7 +23,7 @@ export class UserService {
     //setting Authorization header with token
     let headers = new HttpHeaders().append('Authorization', token);
     // >-> send request on server for token verification
-    return this.http.get(`http://localhost:8080/api/users/details`, {
+    return this.http.get(`api/users/details`, {
       headers: headers,
       observe: 'response',
     });
@@ -34,7 +34,7 @@ export class UserService {
     */
   activateAccount(token): Observable<any> {
     return this.http.put(
-      `http://localhost:8080/api/account/activate/${token}`,
+      `api/account/activate/${token}`,
       {},
       {
         observe: 'response',
@@ -48,7 +48,7 @@ export class UserService {
   sendResetToken(email): Observable<any> {
     let headers = new HttpHeaders().append('site_url', 'localhost:4200');
     return this.http.put(
-      `http://localhost:8080/api/account/forgot/${email}`,
+      `api/account/forgot/${email}`,
       {},
       {
         headers: headers,
@@ -63,7 +63,7 @@ export class UserService {
          >=> else {access:false}
     */
   accessReset(token): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/account/reset/${token}`);
+    return this.http.get(`api/account/reset/${token}`);
   }
 
   /*
@@ -73,7 +73,7 @@ export class UserService {
     */
   resetPassword(data, token): Observable<any> {
     return this.http.put(
-      `http://localhost:8080/api/account/reset/${token}`,
+      `api/account/reset/${token}`,
       data,
       { observe: 'response' }
     );
@@ -86,7 +86,7 @@ export class UserService {
     const token = localStorage.getItem('authUser');
     //setting Authorization header with token
     let headers = new HttpHeaders().append('Authorization', token);
-    return this.http.delete(`http://localhost:8080/api/users/${id}/delete`, {
+    return this.http.delete(`api/users/${id}/delete`, {
       headers: headers,
       observe: 'response',
     });

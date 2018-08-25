@@ -3,7 +3,7 @@
     <div class="site-content--main">
         <div class="single-product">
             <div class="single-product--header">
-                <img *ngIf="product?.productImg" src='http://localhost:8080/images/{{product.productImg}}' alt="">
+                <img *ngIf="product?.productImg" src='images/{{product.productImg}}' alt="">
                 <div class="product-content">
                     <span class="product-content--title">{{product?.productTitle}}</span>
                     <div class="product-content--extra">
@@ -32,7 +32,8 @@
                 </div>
                 <div class="single-reviews">
                     <h2>Reviews</h2>
-                    <span *ngIf="userAllowToReview" (click)="showForm()" class="reveal-text">Submit your experience with product</span>
+                    <span *ngIf="userAllowToReview" (click)="showForm()" class="reveal-text">Submit your experience with
+                        product</span>
                     <div class="review-list">
                         <div *ngFor="let review of product?.reviews;let i=index;" class="review-list--item">
                             <div class="user-review">
@@ -53,44 +54,44 @@
                             </div>
                             <div class="review-desc">{{review?.review}}</div>
                         </div>
-                        <p  style="text-align:center;padding:25px;" *ngIf="product?.reviews.length == 0">Reviews are not available.</p>
+                        <p style="text-align:center;padding:25px;" *ngIf="product?.reviews.length == 0">Reviews are not available.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    <!-- End: Site Content Container -->
+<!-- End: Site Content Container -->
 
 
-    <!-- Review Form -->
-    <form *ngIf="userAllowToReview" (ngSubmit)="submitReview(f)" [ngClass]="{'reveal':reviewForm}" class="review-form" #f="ngForm">
-        <span (click)="hideForm()" class="close-btn fa fa-close"></span>
-        <div class="review-form--meta">
-            <img src="http://localhost:8080/images/{{product.productImg}}" alt="">
-            <div class="details">
-                <h4>{{product?.productName}}</h4>
-                <div class="rating">
-                        <i *ngFor="let stars of fullStars[0];" class="fa fa-star"></i>
-                        <i *ngFor="let stars of halfStars[0];" class="fa fa-star-half"></i>
-                        <i *ngFor="let stars of noStars[0];" class="fa fa-star-o"></i>
-                </div>
-                <span>Total Reviews : {{product?.reviews?.length}}</span>
+<!-- Review Form -->
+<form *ngIf="userAllowToReview" (ngSubmit)="submitReview(f)" [ngClass]="{'reveal':reviewForm}" class="review-form" #f="ngForm">
+    <span (click)="hideForm()" class="close-btn fa fa-close"></span>
+    <div class="review-form--meta">
+        <img src="images/{{product.productImg}}" alt="">
+        <div class="details">
+            <h4>{{product?.productName}}</h4>
+            <div class="rating">
+                <i *ngFor="let stars of fullStars[0];" class="fa fa-star"></i>
+                <i *ngFor="let stars of halfStars[0];" class="fa fa-star-half"></i>
+                <i *ngFor="let stars of noStars[0];" class="fa fa-star-o"></i>
             </div>
+            <span>Total Reviews : {{product?.reviews?.length}}</span>
         </div>
-        <textarea ngModel name="review" id="" cols="30" rows="10" placeholder="Your Review" required></textarea>
-        <div class="form-rating">
-            <input type="radio" ngModel name="rating" id="rating-5" value="5" required>
-            <label for="rating-5" class="fa fa-star"></label>
-            <input type="radio" ngModel name="rating" id="rating-4" value="4" required>
-            <label for="rating-4" class="fa fa-star"></label>
-            <input type="radio" ngModel name="rating" id="rating-3" value="3" required>
-            <label for="rating-3" class="fa fa-star"></label>
-            <input type="radio" ngModel name="rating" id="rating-2" value="2" required>
-            <label for="rating-2" class="fa fa-star"></label>
-            <input type="radio" ngModel name="rating" id="rating-1" value="1" required>
-            <label for="rating-1" class="fa fa-star"></label>
-        </div>
-        <button [disabled]="!f.valid" class="btn btn-gr">Submit</button>
-    </form>
-    <!-- End:Review Form -->
+    </div>
+    <textarea ngModel name="review" id="" cols="30" rows="10" placeholder="Your Review" required></textarea>
+    <div class="form-rating">
+        <input type="radio" ngModel name="rating" id="rating-5" value="5" required>
+        <label for="rating-5" class="fa fa-star"></label>
+        <input type="radio" ngModel name="rating" id="rating-4" value="4" required>
+        <label for="rating-4" class="fa fa-star"></label>
+        <input type="radio" ngModel name="rating" id="rating-3" value="3" required>
+        <label for="rating-3" class="fa fa-star"></label>
+        <input type="radio" ngModel name="rating" id="rating-2" value="2" required>
+        <label for="rating-2" class="fa fa-star"></label>
+        <input type="radio" ngModel name="rating" id="rating-1" value="1" required>
+        <label for="rating-1" class="fa fa-star"></label>
+    </div>
+    <button [disabled]="!f.valid" class="btn btn-gr">Submit</button>
+</form>
+<!-- End:Review Form -->

@@ -13,7 +13,7 @@ export class OrderService {
     */
 
   getOrders() {
-    return this.http.get<any>('http://localhost:8080/api/orders', {
+    return this.http.get<any>('api/orders', {
       observe: 'response',
     });
   }

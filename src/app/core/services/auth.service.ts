@@ -28,7 +28,7 @@ export class AuthService {
   signup(data) {
     //setting headers with for domain value
     let headers = new HttpHeaders().append('site_url', 'localhost:4200');
-    return this.http.post('http://localhost:8080/api/users/signup', data, {
+    return this.http.post('api/users/signup', data, {
       headers: headers,
       observe: 'response',
     });
@@ -39,7 +39,7 @@ export class AuthService {
   */
 
   signin(data) {
-    return this.http.post('http://localhost:8080/api/users/signin', data, {
+    return this.http.post('api/users/signin', data, {
       observe: 'response',
     });
   }
@@ -58,7 +58,7 @@ export class AuthService {
 
     // >-> send request on server for token verification
     return this.http
-      .get(`http://localhost:8080/api/users/verify`, { headers: headers })
+      .get(`api/users/verify`, { headers: headers })
       .catch(err => {
         alert('Server not responding.');
         this.router.navigateByUrl('/signup');
