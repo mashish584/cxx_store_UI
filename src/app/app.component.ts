@@ -6,13 +6,10 @@ import {
 } from './core/services';
 import {
   Component,
-  ViewEncapsulation,
   OnInit,
-  OnChanges,
-  Inject,
 } from '@angular/core';
-import { Router, NavigationStart, NavigationCancel } from '@angular/router';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Router, NavigationStart} from '@angular/router';
+
 
 @Component({
   selector: 'app-root',

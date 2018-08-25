@@ -37,6 +37,7 @@ export class ForgotComponent {
         this.email = '';
       },
       (error: any) => {
+        console.log(error);
         let { message } = error.error;
         // update error message
         this.error = message || 'Server is not responding';
