@@ -77,7 +77,7 @@ export class AdminProductForm implements OnInit {
             //set editMode to true
             this.editMode = true;
             //set image in form
-            this.imgSrc = `images/${product.productImg}`;
+            this.imgSrc = `${product.productImg}`;
             // createForm
             this.createForm();
             // Load Child categories
@@ -278,7 +278,7 @@ export class AdminProductForm implements OnInit {
         if (event instanceof HttpResponse) {
           this.disable = false;
           let { message, product } = event.body;
-          this.imgSrc = `images/${product.productImg}`;
+          this.imgSrc = `${product.productImg}`;
           //hide progress bar after 2seconds
           // and set percentageUpload back to 0
           setTimeout(() => {
